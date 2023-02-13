@@ -28,6 +28,12 @@ Route::get('/test', function () {
     return Inertia::render('test');
 });
 
+Route::prefix('admin')->group(function(){
+    Route::get('/dashboard', function () {
+        return Inertia::render('Sakai/components/AppSidebar')->rootView('layout');
+    });
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
