@@ -30,7 +30,7 @@ Route::get('/test', function () {
 
 Route::prefix('admin')->group(function(){
     Route::get('/dashboard', function () {
-        return Inertia::render('Sakai/components/AppSidebar')->rootView('layout');
+        return Inertia::render('Sakai/layout')->rootView('layout');
     });
 });
 
