@@ -23,11 +23,21 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+Route::get('/home', function () {
+    return Inertia::render('home')->rootView("web");
+});
+
+Route::get('/projects', function () {
+    return View('projects');
+});
 
 Route::get('/test', function () {
     return Inertia::render('test');
 });
 
+Route::get('/Directorio', function () {
+    return Inertia::render('Directorio')->rootView("web");
+});
 Route::prefix('admin')->group(function(){
     Route::get('/dashboard', function () {
         return Inertia::render('Sakai/layout')->rootView('layout');
@@ -43,3 +53,4 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
 });
+
