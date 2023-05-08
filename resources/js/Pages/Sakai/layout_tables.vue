@@ -1,37 +1,16 @@
 <template lang="pug">
-<!-- div.layout-wrapper(:class="containerClass") -->
-div.layout-wrapper(class="layout-theme-light layout-static" :class="toggleMenu ? 'layout-static-inactive layout-mobile-active' : ''")
+div.layout-wrapper(:class="containerClass")
     app-topbar
+    div.layout-sidebar
+        app-sidebar
     div.layout-main-container
-        div.layout-sidebar
-            app-sidebar
         div.layout-main
-            slot(name="content")
         app-footer
     app-config
     div.layout-mask
 </template>
-<style>
-    @import 'bootstrap';
-    a{
-        text-decoration: none;
-    }
-    .p-inputtext{
-        width: 100%
-    }
-    .layout-sidebar{
-        z-index: 1 !important;
-    }
-    .p-dialog.p-component{
-        background-color: white;
-    }
-    .p-dialog-mask.p-component-overlay.p-component-overlay-enter{
-        z-index: 9 !important;
-    }
-</style>
 <script>
 import '@/../css/styles.scss';
-import '@/../css/layout/styles/theme/lara-light-indigo/theme.css';
 import AppTopbar from './components/AppTopbar.vue';
 import AppFooter from './components/AppFooter.vue';
 import AppSidebar from './components/AppSidebar.vue';
@@ -100,3 +79,6 @@ export default {
     }
 }
 </script>
+<style>
+
+</style>

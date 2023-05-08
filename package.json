@@ -31,6 +31,8 @@
         "bootstrap": "^5.2.3",
         "bootstrap-vue": "^2.23.1",
         "naive-ui": "latest",
+        "primeicons": "^6.0.1",
+        "v-pagination-3": "^0.1.7",
         "vue": "next",
         "vue-carousel-3d": "^1.0.1",
         "vue-flux": "^7.0.0-alpha.0",

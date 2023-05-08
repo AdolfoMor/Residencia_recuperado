@@ -1,3 +1,11 @@
+.masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url('../../builder2/images/Portada.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 #Subheader {
 	background-image: url(../images/builder2-subheader-bg.png);
 	background-repeat: no-repeat;

@@ -7,12 +7,6 @@
         .placeholder
       .column.mcb-column.two-third.column_column
         .column_attr.clearfix.align_center
-          n-carousel(direction='vertical' dot-placement='right' mousewheel='' style='width: 100%; height: 240px')
-            img.carousel-img(src='https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg')
-            img.carousel-img(src='https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg')
-            img.carousel-img(src='https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg')
-            img.carousel-img(src='https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg')
-          br
           v-typical.blink(:steps="['Fortaleciendo...', 3000, 'Impulsando', 3000, 'Preparando', 3000]" :loop='Infinity' :wrapper="'h2'") 
           h2 A Los Jovenes Empresarios.
           hr.no_line(style='margin:0 auto 10px')
@@ -26,8 +20,11 @@
       .column.mcb-column.one.column_image
         .image_frame.image_item.no_link.scale-with-grid.no_border
           .image_wrapper
-            img(v-prlx='')
-            img.scale-with-grid(src='/content/builder2/images/1.jpg')
+          n-carousel(direction='vertical' dot-placement='right' mousewheel='' style='width: 100%; height: 340px')
+            img.carousel-img(src='https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg')
+            img.carousel-img(src='https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg')
+            img.carousel-img(src='https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg')
+            img.carousel-img(src='https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg')
   .wrap.mcb-wrap.three-fifth.valign-middle.clearfix(style='padding:0 5%')
     .mcb-wrap-inner
       .column.mcb-column.one.column_column
@@ -77,13 +74,13 @@
           p
             | La integración entre los afiliados permite la generación de valor para todos los involucrados, nuevos negocios, crecimiento económico y de las organizaciones.
 
-
 </template>
 <script>
 import { NCarousel } from "naive-ui"
 import { NDivider } from "naive-ui"
 import VTypical from 'vue-typical'
 import VuePrlx from 'vue-prlx'
+import headimageComponent from '@/Pages/Componentes/headimage.vue'
 export default{
   props: {
     testing: String
@@ -93,7 +90,8 @@ export default{
     NCarousel,
     VTypical,
     NDivider,
-    VuePrlx
+    VuePrlx,
+    headimageComponent
   }
 }
 </script>

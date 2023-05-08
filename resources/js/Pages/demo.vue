@@ -1,28 +1,42 @@
-<template>
-    <n-carousel>
-      <img
-        class="carousel-img"
-        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel1.jpeg"
-      >
-      <img
-        class="carousel-img"
-        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel2.jpeg"
-      >
-      <img
-        class="carousel-img"
-        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel3.jpeg"
-      >
-      <img
-        class="carousel-img"
-        src="https://naive-ui.oss-cn-beijing.aliyuncs.com/carousel-img/carousel4.jpeg"
-      >
-    </n-carousel>
-  </template>
-  
-  <style scoped>
-  .carousel-img {
-    width: 100%;
-    height: 240px;
-    object-fit: cover;
+<template lang="pug">
+head(title='Welcome')
+sakai
+  template(v-slot:content)
+    .col-12 
+      .row
+        table-component(:columns="columns" :data="customers" @filter="filterData($event, getCustomers)" :meta="meta" :params="params")
+</template>
+<script>
+import Sakai from './Sakai/layout.vue';
+// import TableComponent from './Sakai/tableComponent.vue';
+import TableComponent from './table.vue';
+import { Head } from '@inertiajs/vue3';
+
+export default {
+  name: 'ViewClient',
+  components: {
+      Sakai,
+      TableComponent
+  },
+  data(){
+    return{
+      columns:[
+        {label: "Nombre", field: "name", sortable: true},
+        {label: "RFC", field: "rfc", sortable: true},
+        {label: "Acciones", sortable: true}
+      ],
+      customer: {},
+      customers: [],
+      clients:{},
+      dialogs: {
+        create: false
+      },
+      meta:{
+        last_page: 1
+      },
+      params: {}
+    }
   }
-  </style>
+}
+</script>
+

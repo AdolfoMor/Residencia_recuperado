@@ -35,6 +35,9 @@
                 a(href='https://twitter.com/cejdurango?lang=es' target="_blank" title='Twitter')
                     i.icon-twitter
                 li.instagram
-                a(href='https://www.instagram.com/cejdurango/' target="_blank" title='Twitter')
+                a(href='https://www.instagram.com/cejdurango/' target="_blank" title='Instagram')
                     i.icon-instagram
+                li.login
+                a(href='/dashboard' target="_blank" title='Login')
+                    i.icon-lock
 </template>

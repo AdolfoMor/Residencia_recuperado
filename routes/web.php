@@ -16,12 +16,12 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
+    return Inertia::render('home', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
-    ]);
+    ])->rootView("web");
 });
 Route::get('/home', function () {
     return Inertia::render('home')->rootView("web");
@@ -38,6 +38,9 @@ Route::get('/test', function () {
 Route::get('/Directorio', function () {
     return Inertia::render('Directorio')->rootView("web");
 });
+Route::get('/Usuario', function () {
+    return Inertia::render('users')->rootView("layout");
+});
 Route::prefix('admin')->group(function(){
     Route::get('/dashboard', function () {
         return Inertia::render('Sakai/layout')->rootView('layout');
@@ -50,7 +53,7 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('demo');
     })->name('dashboard');
 });
 

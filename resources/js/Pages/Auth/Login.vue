@@ -7,6 +7,7 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 
 defineProps({
     canResetPassword: Boolean,
@@ -18,7 +19,9 @@ const form = useForm({
     password: '',
     remember: false,
 });
-
+const logoUrl = computed(() => {
+    return `/content/builder2/images/logo-cej.png`;
+});
 const submit = () => {
     form.transform(data => ({
         ...data,
@@ -34,7 +37,7 @@ const submit = () => {
 
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <img :src="logoUrl" alt="logo" />
         </template>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
