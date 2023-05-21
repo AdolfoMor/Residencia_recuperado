@@ -11,7 +11,7 @@ const model = ref([
     {
         label: 'Directorio',
         items: [
-            { label: 'Afiliados', icon: 'pi pi-fw pi-table', url: '/dashboard' },
+            { label: 'Afiliados', icon: 'pi pi-fw pi-table', url: '/Afiliados' },
         ]
     },
     {

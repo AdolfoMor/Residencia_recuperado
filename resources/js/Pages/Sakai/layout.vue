@@ -2,13 +2,12 @@
 <!-- div.layout-wrapper(:class="containerClass") -->
 div.layout-wrapper(class="layout-theme-light layout-static" :class="toggleMenu ? 'layout-static-inactive layout-mobile-active' : ''")
     app-topbar
-    div.layout-main-container
-        div.layout-sidebar
+    div.layout-sidebar
             app-sidebar
+    div.layout-main-container
         div.layout-main
             slot(name="content")
         app-footer
-    app-config
     div.layout-mask
 </template>
 <style>

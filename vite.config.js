@@ -9,12 +9,10 @@ export default defineConfig({
             host: 'localhost'
         }
     },
-
     plugins: [
         laravel({
             input: 'resources/js/app.js',
             refresh: true,
-            
         }),
         vue({
             template: {
@@ -23,7 +21,6 @@ export default defineConfig({
                     includeAbsolute: false,
                 },
             },
-            
         }),
     ],
 });

@@ -33,11 +33,32 @@ sakai
                             template(#body='slotProps')
                             button.mr-2(icon='pi pi-pencil' outlined='' rounded='' @click='editProduct(slotProps.data)')
                         button(icon='pi pi-trash' outlined='' rounded='' severity='danger' @click='confirmDeleteProduct(slotProps.data)')
+
+dialog-component.p-fluid(v-model:visible='usuarioDialog', :style="{width: '450px'}", header='Agregar nuevo usuario', :modal='true')
+    img.block.m-auto.pb-3(v-if='product.image', :src='`https://primefaces.org/cdn/primevue/images/product/${product.image}`', :alt='product.image')
+    .field
+        label(for='name') Nombre
+        input-text-component#name(v-model.trim='product.name', required='true', autofocus='', :class="{'p-invalid': submitted && !afiliado.nombre}")
+        small.p-error(v-if='submitted && !afiliado.nombre') Es requerido 
+        br
+        label(for='name') RFC
+        input-text-component#name(v-model.trim='product.id', required='true', autofocus='', :class="{'p-invalid': submitted && !afiliado.RFC}")
+        small.p-error(v-if='submitted && !product.name') Es requerido 
+        br
+        label(for='name') Estado
+        input-text-component#name(v-model.trim='product.name', required='true', autofocus='', :class="{'p-invalid': submitted && !afiliado.estado}")
+        small.p-error(v-if='submitted && !afiliado.estado') Es requerido 
+    template(#footer='')
+        button-component(label='Limpiar' icon='pi pi-times' text='' @click='hideDialog')
+        button-component(label='Guardar' icon='pi pi-save' text='' @click='saveProduct')
+      
+    
 </template>
 <script>
 import Sakai from './Sakai/layout.vue';
 // import TableComponent from './Sakai/tableComponent.vue';
 import TableComponent from './table.vue';
+import DialogComponent from 'primevue/dialog';
 import DataTableComponent from 'primevue/datatable';
 import ToolBarComponent from 'primevue/toolbar';
 import ButtonComponent from 'primevue/button';
@@ -60,12 +81,13 @@ export default {
         InputTextComponent,
         Rating,
         Tag,
-        ButtonComponent
+        ButtonComponent,
+        DialogComponent
     },
     data() {
         return {
             products: null,
-            productDialog: false,
+            usuarioDialog: false,
             deleteProductDialog: false,
             deleteProductsDialog: false,
             product: {},
@@ -91,10 +113,10 @@ export default {
         openNew() {
             this.product = {};
             this.submitted = false;
-            this.productDialog = true;
+            this.usuarioDialog = true;
         },
         hideDialog() {
-            this.productDialog = false;
+            this.usuarioDialog = false;
             this.submitted = false;
         },
         saveProduct() {

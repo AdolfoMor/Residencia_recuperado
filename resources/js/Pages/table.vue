@@ -2,48 +2,56 @@
 .card
     tool-bar-component.mb-4
         template(#start='')
-            button-component.mr-2(label='New' icon='pi pi-plus' severity='success' @click='openNew')
-            button-component(label='Delete' icon='pi pi-trash' severity='danger' @click='confirmDeleteSelected' :disabled='!selectedProducts || !selectedProducts.length')
+            button-component.mr-2(label='Agregar' icon='pi pi-plus' severity='success' @click='openNew')
+            button-component(label='Eliminar' icon='pi pi-trash' severity='danger' @click='confirmDeleteSelected' :disabled='!selectedProducts || !selectedProducts.length')
         template(#end='')
-    data-table-component(ref='dt' :value='products' datakey='id' :paginator='false' :rows='2' :filters='filters' class="table1")
-        template(#header='')
-            .flex.flex-wrap.gap-2.align-items-center.justify-content-between
-            h4.m-0 Afiliados
-            span.p-input-icon-left
-                i.pi.pi-search
-                input-text-component(v-model="filters['global'].value" placeholder='Search...')
-        column(selectionmode='multiple' style='width: 3rem' :exportable='false')
-        column(field='code' header='Code' sortable='' style='min-width:12rem')
-        column(field='name' header='Name' sortable='' style='min-width:16rem')
-        column(header='Image')
-            template(#body='slotProps')
-            img.shadow-2.border-round(:src='`https://primefaces.org/cdn/primevue/images/product/${slotProps.data.image}`' :alt='slotProps.data.image' style='width: 64px')
-        column(field='price' header='Price' sortable='' style='min-width:8rem')
-            template(#body='slotProps')
-            | {{formatCurrency(slotProps.data.price)}}
-        column(field='category' header='Category' sortable='' style='min-width:10rem')
-        column(field='rating' header='Reviews' sortable='' style='min-width:12rem')
-            template(#body='slotProps')
-            rating(:modelvalue='slotProps.data.rating' :readonly='true' :cancel='false')
-        column(field='inventoryStatus' header='Status' sortable='' style='min-width:12rem')
-            template(#body='slotProps')
-            tag(:value='slotProps.data.inventoryStatus' :severity='getStatusLabel(slotProps.data.inventoryStatus)')
-        column(:exportable='false' style='min-width:8rem')
-            template(#body='slotProps')
-            button.mr-2(icon='pi pi-pencil' outlined='' rounded='' @click='editProduct(slotProps.data)')
-        button(icon='pi pi-trash' outlined='' rounded='' severity='danger' @click='confirmDeleteProduct(slotProps.data)')
+    .container-fluid
+        table.table.table-striped.border-collapse.border.w-full(v-if="$attrs.data.length")
+            thead
+                tr.border
+                    th.p-3.text-center.border(v-for="column in columns") {{ column.label }}
+                        span.fa.fa-sort(v-if="column.sortable && params.sort != column.field" @click="setSort(column)")
+                        span.fa.fa-sort-down(v-if="column.sortable && params.sort == column.field && params.order == 'asc'" @click="toggleOrder()")
+                        span.fa.fa-sort-up(v-if="column.sortable && params.sort == column.field && params.order == 'desc'" @click="toggleOrder()")
+            tbody
+                slot(v-for="row in $attrs.data" :row="row")
+                    tr
+        div(v-if="$attrs.data.length == 0")
+            h2.text-center No existen registros
+
+dialog-component.p-fluid(v-model:visible='afiliadoDialog', :style="{width: '450px'}", header='Agregar nuevo afiliado', :modal='true')
+    img.block.m-auto.pb-3(v-if='product.image', :src='`https://primefaces.org/cdn/primevue/images/product/${product.image}`', :alt='product.image')
+    form#createForm(@submit.prevent="store" ref="createForm")
+        .field
+            label(for='Nombre') Nombre
+            inputtext-component#name(required='true', name="Nombre" ,autofocus='', :class="{'p-invalid': submitted && !afiliado.nombre}")
+            small.p-error(v-if='submitted && !afiliado.nombre') Es requerido 
+            br
+            label(for='RFC') RFC
+            inputtext-component#name(required='true', name="RFC", autofocus='', :class="{'p-invalid': submitted && !afiliado.RFC}")
+            small.p-error(v-if='submitted && !product.name') Es requerido 
+            br
+            label(for='Estado') Estado
+            inputtext-component#name(required='true', name="Estado", autofocus='', :class="{'p-invalid': submitted && !afiliado.estado}")
+            small.p-error(v-if='submitted && !afiliado.estado') Es requerido 
+    template(#footer='')
+        button-component(label='Limpiar' icon='pi pi-times' text='' @click='hideDialog')
+        button-component(label='Guardar' icon='pi pi-save' text='' @click="$refs.createForm.requestSubmit()")
 </template>
 <script>
 import DataTableComponent from 'primevue/datatable';
+import DialogComponent from 'primevue/dialog';
+import InputtextComponent from 'primevue/inputtext';
 import ToolBarComponent from 'primevue/toolbar';
 import ButtonComponent from 'primevue/button';
-import Rating from 'primevue/rating';
+import RatingComponent from 'primevue/rating';
 import Tag from 'primevue/tag';
-import InputTextComponent from 'primevue/inputtext';
 import Column from 'primevue/column';
+import TextAreaComponent from 'primevue/textarea';
 import ColumnGroup from 'primevue/columngroup';   // optional
 import Row from 'primevue/row'; 
 import { FilterMatchMode } from 'primevue/api';
+import { ref  } from 'vue';
 export default {
     components: {
         DataTableComponent,
@@ -51,15 +59,28 @@ export default {
         ToolBarComponent,
         Row,
         ColumnGroup,
-        InputTextComponent,
-        Rating,
+        InputtextComponent,
+        RatingComponent,
         Tag,
-        ButtonComponent
+        ButtonComponent,
+        TextAreaComponent,
+        DialogComponent
     },
     data() {
         return {
+            columns: [
+                { label: 'Nombre', field: 'Nombre', sortable: true},
+                { label: 'RFC', field: 'RFC', sortable: true },
+                { label: 'Estado', field: 'Estado', sortable: true },
+            ],
+            user: {},
+            users: [],
+            meta: {
+                last_page: 1
+            },
+            params: {},
             products: null,
-            productDialog: false,
+            afiliadoDialog: false,
             deleteProductDialog: false,
             deleteProductsDialog: false,
             product: {},
@@ -67,28 +88,85 @@ export default {
             filters: {},
             submitted: false,
             statuses: [
-				{label: 'INSTOCK', value: 'instock'},
-				{label: 'LOWSTOCK', value: 'lowstock'},
+				{label: 'Durango', value: 'Durango'},
+				{label: 'Hidalgo', value: 'lowstock'},
 				{label: 'OUTOFSTOCK', value: 'outofstock'}
             ]
         }
+    },
+    mounted(){
+        this.getUsers()
     },
     created() {
         this.initFilters();
     },
     methods: {
+        changePage(number){
+            if(this.meta.last_page >= this.meta.current_page && this.meta.current_page > 0){
+                this.params.page = number
+                this.sendOut()
+                setTimeout(()=> {
+                    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+                    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                        return new Tooltip(tooltipTriggerEl)
+                    })
+                },1000)
+            }
+        },
+        getUsers(){
+            axios.get('/api/afiliado').then(response => {
+                this.users = response.data.data
+                this.meta = response.data.meta
+            }).catch(errors => {
+                this.manageErrors(errors)
+            })
+        },
+        setSort(column){
+            this.params.sort = column.field,
+            this.params.order = 'asc'
+            this.sendOut()
+        },
+        toggleOrder(){
+            if(this.params.order == 'asc'){
+                this.params.order = 'desc'
+            }else{
+                this.params.order = 'asc'
+            }
+            this.sendOut()
+        },
+        sendOut(){
+            this.$emit('filter', this.params)
+        },
+        store(){
+            this.localErrors = []
+            let form = document.getElementById('createForm');
+            let formData = new FormData(form);
+            //alert(this.user.edit)
+            let url = '/api/afiliado'
+            /* if(this.user.edit){
+                formData.append('_method', 'PUT');
+                formData.append('id', this.user.id);
+                url = url + '/' + this.user.id
+            }    */        
+            axios.post(url, formData).then(response => {
+                //this.getUsers()
+                this.dialogs.create = false
+            }).catch(errors => {
+                this.manageErrors(errors)
+            })
+        },
         formatCurrency(value) {
             if(value)
 				return value.toLocaleString('en-US', {style: 'currency', currency: 'USD'});
 			return;
         },
         openNew() {
-            this.product = {};
+            this.afiliado = {};
             this.submitted = false;
-            this.productDialog = true;
+            this.afiliadoDialog = true;
         },
         hideDialog() {
-            this.productDialog = false;
+            this.afiliadoDialog = false;
             this.submitted = false;
         },
         saveProduct() {
@@ -181,10 +259,3 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-.table1{
-    .p-datatable{
-        background: var(--blue-500);
-    }
-}
-</style>
