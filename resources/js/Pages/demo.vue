@@ -15,13 +15,17 @@ sakai
                 td.p-6 {{ row.RFC  }}
                 td.p-6 {{ row.Estado  }}
                 td(align="center")
+                  button-component.btn.btn-primary.mr-1(@click="edit(row)" v-tooltip="'Gestionar cliente'" title="Gestionar cliente")
+                      i.pi.pi-pencil
+                  button-component.btn.btn-danger(@click="remove(row)" v-tooltip="'Eliminar cliente'" title="Eliminar cliente")
+                      i.pi.pi-trash
 
     dialog-component.p-fluid(v-model:visible='afiliadoDialog', :style="{width: '450px'}", header='Agregar nuevo afiliado', :modal='true')
       form#createForm(@submit.prevent="store" ref="createForm")
         .field
           label(for='Nombre') Nombre
-          inputtext-component#nombre(required='true', name="Nombre" ,autofocus='', :class="{'p-invalid': submitted && !afiliado.nombre}")
-          small.p-error(v-if='submitted && !afiliado.nombre') Es requerido 
+          inputtext-component#nombre(required='true', name="Nombre" ,autofocus='', :class="{'p-invalid': submitted && !user.Nombre}")
+          small.p-error(v-if='submitted && !user.Nombre') Es requerido 
         .field
           label(for='RFC') RFC
           inputtext-component#name(required='true', name="RFC", autofocus='', :class="{'p-invalid': submitted && !afiliado.RFC}")
@@ -87,6 +91,23 @@ export default {
       axios.get('/api/afiliado').then(response => {
         this.users = response.data.data
         //this.meta = response.data.meta
+      }).catch(errors => {
+        this.manageErrors(errors)
+      })
+    },
+    edit(user){
+      this.user = user
+      // alert(JSON.stringify(customer))
+      this.user.id = user.id
+      this.user.Nombre = user.Nombre
+      this.user.RFC = user.rfc
+      this.user.edit = true
+      this.afiliadoDialog = true
+    },
+    remove(user){
+      axios.delete('/api/afiliado/' + user.id).then(respose => {
+        this.getUsers()
+        this.afiliadoDialog = false;
       }).catch(errors => {
         this.manageErrors(errors)
       })

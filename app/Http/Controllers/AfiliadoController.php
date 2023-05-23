@@ -18,7 +18,7 @@ class AfiliadoController extends Controller
      */
     public function index()
     {
-        $afiliados = Afiliado::get();
+        $afiliados = Afiliado::get(); 
         return AfiliadoResource::collection($afiliados);
     }
 
