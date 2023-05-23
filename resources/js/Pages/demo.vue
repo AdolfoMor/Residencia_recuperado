@@ -6,7 +6,7 @@ sakai
         .card
           tool-bar-component.mb-4
             template(#start='')
-              button-component.mr-2(label='Agregar' icon='pi pi-plus' severity='success' @click='openNew')
+              button-component.mr-2(label='Agregar' icon='pi pi-plus' severity='success' @click.prevent='openNew')
             template(#end='')
           table-component(:columns="columns" :data="users" @filter="filterData($event, getUsers)" :meta="meta" :params="params")
             template(v-slot="{ row }")
@@ -20,12 +20,12 @@ sakai
       form#createForm(@submit.prevent="store" ref="createForm")
         .field
           label(for='Nombre') Nombre
-          inputtext-component#name(required='true', name="Nombre" ,autofocus='', :class="{'p-invalid': submitted && !afiliado.nombre}")
+          inputtext-component#nombre(required='true', name="Nombre" ,autofocus='', :class="{'p-invalid': submitted && !afiliado.nombre}")
           small.p-error(v-if='submitted && !afiliado.nombre') Es requerido 
         .field
           label(for='RFC') RFC
           inputtext-component#name(required='true', name="RFC", autofocus='', :class="{'p-invalid': submitted && !afiliado.RFC}")
-          small.p-error(v-if='submitted && !product.name') Es requerido 
+          small.p-error(v-if='submitted && !afiliado.rfc') Es requerido 
         .field
           label(for='Estado') Estado
           inputtext-component#name(required='true', name="Estado", autofocus='', :class="{'p-invalid': submitted && !afiliado.estado}")
@@ -42,7 +42,7 @@ import DialogComponent from 'primevue/dialog';
 import InputtextComponent from 'primevue/inputtext';
 import ToolBarComponent from 'primevue/toolbar';
 import ButtonComponent from 'primevue/button';
-import { ref  } from 'vue';
+
 export default {
   components: {
     Sakai,
@@ -82,12 +82,9 @@ export default {
       ]
     }
   },
-  mounted(){
-    this.getUsers()
-  },
   methods: {
     getUsers(){
-      axios.get('/api/afiliado/' + this.usersID ).then(response => {
+      axios.get('/api/afiliado').then(response => {
         this.users = response.data.data
         //this.meta = response.data.meta
       }).catch(errors => {
@@ -100,13 +97,13 @@ export default {
       let formData = new FormData(form);
       //alert(this.user.edit)
       let url = '/api/afiliado'
-      /* if(this.user.edit){
-          formData.append('_method', 'PUT');
-          formData.append('id', this.user.id);
-          url = url + '/' + this.user.id
-      }    */        
+      if(this.user.edit){
+        formData.append('_method', 'PUT');
+        formData.append('id', this.user.id);
+        url = url + '/' + this.user.id
+      }        
       axios.post(url, formData).then(response => {
-      //this.getUsers()
+        this.getUsers()
         this.afiliadoDialog.create = false
       }).catch(errors => {
         this.manageErrors(errors)
@@ -114,28 +111,15 @@ export default {
     },
     openNew() {
       this.afiliado = {};
-      this.submitted = false;
       this.afiliadoDialog = true;
     },
     hideDialog() {
       this.afiliadoDialog = false;
       this.submitted = false;
-    },
-    getStatusLabel(status) {
-      switch (status) {
-        case 'INSTOCK':
-          return 'success';
-
-        case 'LOWSTOCK':
-          return 'warning';
-
-        case 'OUTOFSTOCK':
-          return 'danger';
-
-        default:
-          return null;
-      }
     }
+  },
+  mounted(){
+    this.getUsers()
   }
 }
 </script>

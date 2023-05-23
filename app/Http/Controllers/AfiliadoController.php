@@ -18,8 +18,7 @@ class AfiliadoController extends Controller
      */
     public function index()
     {
-        $afiliado = Afiliado::all();
-        return Inertia::render('Mostrar', ['afiliado'=>$afiliado]);
+        return AfiliadoResource::collection($afiliados);
     }
 
     /**
@@ -29,7 +28,7 @@ class AfiliadoController extends Controller
      */
     public function create()
     {
-        return Inertia::render('FormCrear');
+
     }
 
     /**
@@ -53,7 +52,8 @@ class AfiliadoController extends Controller
      */
     public function show(Afiliado $afiliado)
     {
-        //
+        $afiliado = Afiliado::find($id);
+        return new AfiliadoResource($afiliado);
     }
 
     /**
@@ -64,7 +64,7 @@ class AfiliadoController extends Controller
      */
     public function edit(Afiliado $afiliado)
     {
-        return Inertia::render('FormEditar',['afiliado'=>$afiliado]);
+    
     }
 
     /**
