@@ -15,24 +15,24 @@ sakai
                 td.p-6 {{ row.RFC  }}
                 td.p-6 {{ row.Estado  }}
                 td(align="center")
-                  button-component.btn.btn-primary.mr-1(@click="edit(row)" v-tooltip="'Gestionar cliente'" title="Gestionar cliente")
+                  button-component.btn.btn-primary.mr-1(@click="edit(row)" v-tooltip="'Editar Afiliado'" title="Editar Afiliado")
                       i.pi.pi-pencil
-                  button-component.btn.btn-danger(@click="remove(row)" v-tooltip="'Eliminar cliente'" title="Eliminar cliente")
+                  button-component.btn.btn-danger(@click="remove(row)" v-tooltip="'Eliminar afiliado'" title="Eliminar afiliado")
                       i.pi.pi-trash
 
-    dialog-component.p-fluid(v-model:visible='afiliadoDialog', :style="{width: '450px'}", header='Agregar nuevo afiliado', :modal='true')
+    dialog-component.p-fluid(v-model:visible='afiliadoDialog', :style="{width: '750px'}", header='Agregar nuevo afiliado', :modal='true')
       form#createForm(@submit.prevent="store" ref="createForm")
         .field
           label(for='Nombre') Nombre
-          inputtext-component#nombre(required='true', name="Nombre" ,autofocus='', :class="{'p-invalid': submitted && !user.Nombre}")
+          inputtext-component#Nombre(required='true', name="Nombre" ,autofocus='', :class="{'p-invalid': submitted && !user.Nombre}")
           small.p-error(v-if='submitted && !user.Nombre') Es requerido 
         .field
           label(for='RFC') RFC
-          inputtext-component#name(required='true', name="RFC", autofocus='', :class="{'p-invalid': submitted && !afiliado.RFC}")
+          inputtext-component#RFC(required='true', name="RFC", autofocus='', :class="{'p-invalid': submitted && !afiliado.RFC}")
           small.p-error(v-if='submitted && !afiliado.rfc') Es requerido 
         .field
           label(for='Estado') Estado
-          inputtext-component#name(required='true', name="Estado", autofocus='', :class="{'p-invalid': submitted && !afiliado.estado}")
+          inputtext-component#Estado(required='true', name="Estado", autofocus='', :class="{'p-invalid': submitted && !afiliado.estado}")
           small.p-error(v-if='submitted && !afiliado.estado') Es requerido 
       template(#footer='')
         button-component(label='Cancelar' icon='pi pi-times' text='' @click='hideDialog')
@@ -55,9 +55,6 @@ export default {
     DialogComponent,
     InputtextComponent,
     ButtonComponent
-  },
-  props: {
-    usersID: {required:true}
   },
   data() {
     return {
@@ -125,7 +122,7 @@ export default {
       }        
       axios.post(url, formData).then(response => {
         this.getUsers()
-        this.afiliadoDialog.create = false
+        this.afiliadoDialog = false
       }).catch(errors => {
         this.manageErrors(errors)
       })

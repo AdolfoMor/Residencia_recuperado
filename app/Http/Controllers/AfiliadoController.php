@@ -75,10 +75,11 @@ class AfiliadoController extends Controller
      * @param  \App\Models\Afiliado  $afiliado
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Afiliado $afiliado)
+    public function update(AfiliadoRequest $request, string $id)
     {
-        $afiliado->update($request->all());
-        return Redirect::route('afiliado.index');
+        $afiliado = Afiliado::find($id);
+        $afiliado->update(['Nombre' => $request['Nombre'], 'RFC' => $request['RFC'], 'Estado' => $request['Estado'] ]);
+        return new AfiliadoResource($afiliado);
     }
 
     /**
@@ -87,9 +88,9 @@ class AfiliadoController extends Controller
      * @param  \App\Models\Afiliado  $afiliado
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Afiliado $afiliado)
+    public function destroy(string $id)
     {
-        $afiliado->delete();
-        return Redirect::route('afiliado.index');
+        Afiliado::destroy($id);
+        return response()->json(['success' => 'Deleted Succesfully']);
     }
 }
