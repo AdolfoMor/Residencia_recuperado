@@ -24,15 +24,15 @@ sakai
       form#createForm(@submit.prevent="store" ref="createForm")
         .field
           label(for='Nombre') Nombre
-          inputtext-component#Nombre(required='true', name="Nombre" ,autofocus='', :class="{'p-invalid': submitted && !user.Nombre}")
+          inputtext-component#Nombre(required='true', name="Nombre" ,v-model='user.Nombre', autofocus='', :class="{'p-invalid': submitted && !user.Nombre}")
           small.p-error(v-if='submitted && !user.Nombre') Es requerido 
         .field
           label(for='RFC') RFC
-          inputtext-component#RFC(required='true', name="RFC", autofocus='', :class="{'p-invalid': submitted && !afiliado.RFC}")
-          small.p-error(v-if='submitted && !afiliado.rfc') Es requerido 
+          inputtext-component#RFC(required='true', name="RFC", autofocus='',v-model='user.RFC', :class="{'p-invalid': submitted && !afiliado.RFC}")
+          small.p-error(v-if='submitted && !afiliado.RFC') Es requerido 
         .field
           label(for='Estado') Estado
-          inputtext-component#Estado(required='true', name="Estado", autofocus='', :class="{'p-invalid': submitted && !afiliado.estado}")
+          inputtext-component#Estado(required='true', name="Estado", autofocus='', v-model='user.Estado', :class="{'p-invalid': submitted && !afiliado.Estado}")
           small.p-error(v-if='submitted && !afiliado.estado') Es requerido 
       template(#footer='')
         button-component(label='Cancelar' icon='pi pi-times' text='' @click='hideDialog')
@@ -60,6 +60,9 @@ export default {
     return {
       columns: [
         { label: 'Nombre', field: 'Nombre', sortable: true},
+        { label: 'RFC', field: 'RFC', sortable: true },
+        { label: 'Dirección', field: 'Estado', sortable: true },
+        { label: '', field: 'Nombre', sortable: true},
         { label: 'RFC', field: 'RFC', sortable: true },
         { label: 'Estado', field: 'Estado', sortable: true },
       ],
@@ -97,7 +100,8 @@ export default {
       // alert(JSON.stringify(customer))
       this.user.id = user.id
       this.user.Nombre = user.Nombre
-      this.user.RFC = user.rfc
+      this.user.RFC = user.RFC
+      this.user.Estado = user.Estado
       this.user.edit = true
       this.afiliadoDialog = true
     },
@@ -113,7 +117,7 @@ export default {
       this.localErrors = []
       let form = document.getElementById('createForm');
       let formData = new FormData(form);
-      //alert(this.user.edit)
+      //alert(this.user.edit);
       let url = '/api/afiliado'
       if(this.user.edit){
         formData.append('_method', 'PUT');
@@ -128,10 +132,18 @@ export default {
       })
     },
     openNew() {
-      this.afiliado = {};
-      this.afiliadoDialog = true;
+      if(this.user > 0){
+        this.afiliado = {};
+        this.afiliadoDialog = true;
+      }else{
+        this.user = {};
+        this.afiliado = {};
+        this.afiliadoDialog = true;
+      }
+
     },
     hideDialog() {
+      this.user = {};
       this.afiliadoDialog = false;
       this.submitted = false;
     }
