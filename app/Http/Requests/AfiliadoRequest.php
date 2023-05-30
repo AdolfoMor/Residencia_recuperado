@@ -26,7 +26,10 @@ class AfiliadoRequest extends FormRequest
         return [
             'Nombre' => 'required',
             'RFC' => 'required',
-            'Estado' => 'required',
+            'Dirección' => 'required',
+            'Teléfono' => 'required',
+            'Logo' => 'required',
+            'Descripción' => 'required',
         ];
     }
 }

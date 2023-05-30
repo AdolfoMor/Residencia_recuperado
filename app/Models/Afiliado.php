@@ -9,5 +9,5 @@ class Afiliado extends Model
 {
     use HasFactory;
     protected $table = 'afiliado';
-    protected $fillable = ['Nombre', 'RFC', 'Estado'];
+    protected $fillable = ['Nombre', 'RFC', 'Dirección', 'Teléfono', 'Logo', 'Descripción'];
 }

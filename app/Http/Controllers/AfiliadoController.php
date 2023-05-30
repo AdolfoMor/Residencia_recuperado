@@ -41,6 +41,11 @@ class AfiliadoController extends Controller
     public function store(AfiliadoRequest $request)
     {
         $afiliado = Afiliado::create($request->all());
+        if($request->hasFile('Logo')){
+            $fileName = time().$request->file('Logo')->getClientOriginalName();
+            $path = $request->file('Logo')->storeAs('images', $fileName, 'public');
+            $afiliado->Logo = '/storage/'.$path;
+        };
         $afiliado->save();
         return new AfiliadoResource($afiliado);
     }
@@ -78,8 +83,39 @@ class AfiliadoController extends Controller
     public function update(AfiliadoRequest $request, string $id)
     {
         $afiliado = Afiliado::find($id);
-        $afiliado->update(['Nombre' => $request['Nombre'], 'RFC' => $request['RFC'], 'Estado' => $request['Estado'] ]);
+        $afiliado->Nombre = $request->input('Nombre');
+        $afiliado->RFC = $request->input('RFC');
+        $afiliado->Dirección = $request->input('Dirección');
+        $afiliado->Teléfono = $request->input('Teléfono');
+        $afiliado->Descripción = $request->input('Descripción');
+        if ($request->hasFile('Logo')) {
+            // Get image actual route
+            $currentLogoPath = $afiliado->Logo;
+    
+            // Upload new image
+            $fileName = time().$request->file('Logo')->getClientOriginalName();
+            $path = $request->file('Logo')->storeAs('images', $fileName, 'public');
+            $afiliado->Logo = '/storage/'.$path;
+    
+            // Delete old image if exists
+            if ($currentLogoPath) {
+                $this->deleteCompanyLogo($currentLogoPath);
+            }
+        }
+    
+        $afiliado->save();
+
         return new AfiliadoResource($afiliado);
+    }
+    private function deleteCompanyLogo($path)
+    {
+        // Get image route 
+        $filePath = public_path($path);
+
+        // Verify file exists and delete
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
     }
 
     /**
@@ -90,7 +126,19 @@ class AfiliadoController extends Controller
      */
     public function destroy(string $id)
     {
+        $afiliado = Afiliado::find($id);
+        $logo = $afiliado->Logo;
+
         Afiliado::destroy($id);
+
+        if ($logo) {
+            $logo = public_path($logo); // Get route file
+            if (file_exists($logo)) {
+                unlink($logo); // Destroy image file
+            }
+        }
+
+
         return response()->json(['success' => 'Deleted Succesfully']);
     }
 }

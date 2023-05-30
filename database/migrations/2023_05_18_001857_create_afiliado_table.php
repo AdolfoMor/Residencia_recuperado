@@ -17,7 +17,10 @@ return new class extends Migration
             $table->id();
             $table->String("Nombre");
             $table->String("RFC");
-            $table->String("Estado");
+            $table->String("Dirección");
+            $table->String("Teléfono");
+            $table->String("Logo");
+            $table->String("Descripción");
             $table->timestamps();
         });
     }

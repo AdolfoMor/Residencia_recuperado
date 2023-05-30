@@ -3,9 +3,10 @@
   .container
     .column.one
       h1.title Directorio Empresarial 
-      busca-component
-empresa-component
-empresa-component
+.col-10 
+  .row
+    .row 
+      empresa-component
 </template>
 <script>
 import buscaComponent from '@/Pages/Componentes/Busca.vue'
