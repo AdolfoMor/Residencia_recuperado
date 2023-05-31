@@ -38,11 +38,6 @@
 
 <body id="body" class="style-simple button-flat layout-full-width if-overlay if-border-hide header-classic minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-left menu-link-color menuo-right menuo-no-borders mobile-tb-center mobile-mini-mr-ll tablet-sticky mobile-header-mini mobile-sticky">
 @inertia
-
-
-    
-
-
 </body>
     <!-- JS -->
     <script src="/js/jquery-3.6.0.min.js"></script>

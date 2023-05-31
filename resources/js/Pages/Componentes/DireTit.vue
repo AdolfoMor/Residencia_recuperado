@@ -3,10 +3,8 @@
   .container
     .column.one
       h1.title Directorio Empresarial 
-.col-10 
-  .row
-    .row 
-      empresa-component
+.row.col-md-8.mx-auto.mt-3
+  empresa-component
 </template>
 <script>
 import buscaComponent from '@/Pages/Componentes/Busca.vue'

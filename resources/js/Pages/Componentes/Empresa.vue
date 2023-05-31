@@ -1,12 +1,18 @@
 <template lang="pug">
-card-component.mt-5(style='width: 25em' v-for = "user in users")
-  template(#header='')
-    img(alt='user header' :src='user.Logo' width="100px")
-  template(#title='') {{user.Nombre}} 
-  template(#subtitle='')  Card subtitle 
-  template(#content='') 
-    p
-      | {{ user.Descripción }}
+.card.shadow-sm.m-5(style='width: 18rem;' v-for = "user in users" )
+  img.card-img-top.mx-auto.d-block.m-3(:src='user.Logo' alt='Card image cap' style="width:100px;height:auto;") 
+  .card-body
+    h5.card-title {{user.Nombre}}
+    p.card-text
+      | {{user.Descripción}}
+  ul.list-group.list-group-flush
+    li.list-group-item Cras justo odio
+    li.list-group-item Dapibus ac facilisis in
+    li.list-group-item Vestibulum at eros
+  .card-body
+    a.card-link(href='#') Card link
+    a.card-link(href='#') Another link
+
 </template>
 <script>
 import CardComponent from 'primevue/card';
