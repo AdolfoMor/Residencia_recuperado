@@ -20,3 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('/afiliado', AfiliadoController::class);
+Route::resource('/direcciones', DireccionesController::class);
+Route::get('/afiliado/show/{busqueda}', [AfiliadoController::class, 'show'])->name('afiliado.busqueda');

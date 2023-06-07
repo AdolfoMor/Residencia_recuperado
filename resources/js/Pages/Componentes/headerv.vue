@@ -32,14 +32,12 @@
 
 </template>
 <script>
-import { NCarousel } from "naive-ui"
 export default{
   props: {
-    testing: String
+    
   },
 
   components: {
-    NCarousel
   }
 }
 </script>

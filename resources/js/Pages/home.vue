@@ -1,7 +1,6 @@
 <template lang="pug">
 #Wrapper 
     header-component
-    headimage-component
     red-component 
     footer-component
 </template>

@@ -18,7 +18,8 @@ class AfiliadoController extends Controller
      */
     public function index()
     {
-        $afiliados = Afiliado::get(); 
+         $afiliados = Afiliado::with("direcciones")->get(); 
+        //$afiliados = Afiliado ::get(); 
         return AfiliadoResource::collection($afiliados);
     }
 
@@ -56,12 +57,11 @@ class AfiliadoController extends Controller
      * @param  \App\Models\Afiliado  $afiliado
      * @return \Illuminate\Http\Response
      */
-    public function show(Afiliado $afiliado)
-    {
-        $afiliado = Afiliado::find($id);
-        return new AfiliadoResource($afiliado);
+    public function show(Request $request, $term )
+    { 
+        $variable = Afiliado::where('Nombre', 'like', '%'.$term.'%')->with("direcciones")->get();
+        return AfiliadoResource::collection($variable);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
