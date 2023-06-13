@@ -28,6 +28,7 @@
     <link rel='stylesheet' href='/css/global.css'>
     <link rel='stylesheet' href='/content/builder2/css/structure.css'>
     <link rel='stylesheet' href='/content/builder2/css/builder2.css'>
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel='stylesheet' href='/content/builder2/css/custom.css'>
 
     <link rel="stylesheet" href="/plugins/rs-plugin-5.3.1/css/settings.css">
@@ -38,80 +39,16 @@
 
 <body id="body" class="style-simple button-flat layout-full-width if-overlay if-border-hide header-classic minimalist-header-no sticky-header sticky-tb-color ab-hide subheader-both-left menu-link-color menuo-right menuo-no-borders mobile-tb-center mobile-mini-mr-ll tablet-sticky mobile-header-mini mobile-sticky">
 @inertia
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
 </body>
-    <!-- JS -->
-    <script src="/js/jquery-3.6.0.min.js"></script>
-	<script src="/js/jquery-migrate-3.3.2.js"></script>
-
-    <script src="/js/mfn.menu.js"></script>
-    <script src="/js/jquery.plugins.js"></script>
-    <script src="/js/jquery.jplayer.min.js"></script>
-    <script src="/js/animations/animations.js"></script>
-    <script src="/js/translate3d.js"></script>
-    <script src="/js/email.js"></script>
-
-    <script src="/plugins/rs-plugin-5.3.1/js/jquery.themepunch.tools.min.js"></script>
-    <script src="/plugins/rs-plugin-5.3.1/js/jquery.themepunch.revolution.min.js"></script>
-
-    <script src="/plugins/rs-plugin-5.3.1/js/extensions/revolution.extension.video.min.js"></script>
-    <script src="/plugins/rs-plugin-5.3.1/js/extensions/revolution.extension.slideanims.min.js"></script>
-    <script src="/plugins/rs-plugin-5.3.1/js/extensions/revolution.extension.actions.min.js"></script>
-    <script src="/plugins/rs-plugin-5.3.1/js/extensions/revolution.extension.layeranimation.min.js"></script>
-    <script src="/plugins/rs-plugin-5.3.1/js/extensions/revolution.extension.kenburn.min.js"></script>
-    <script src="/plugins/rs-plugin-5.3.1/js/extensions/revolution.extension.navigation.min.js"></script>
-    <script src="/plugins/rs-plugin-5.3.1/js/extensions/revolution.extension.migration.min.js"></script>
-<script src="/plugins/rs-plugin-5.3.1/js/extensions/revolution.extension.parallax.min.js"></script>
-	<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<script>
-var revapi1, tpj;
-( function() {
-	if (!/loaded|interactive|complete/.test(document.readyState))
-		document.addEventListener("DOMContentLoaded", onLoad);
-	else
-		onLoad();
-	function onLoad() {
-		if (tpj === undefined) {
-			tpj = jQuery;
-			if ("off" =="on")
-				tpj.noConflict();
-		}
-		if (tpj("#rev_slider_1_1").revolution == undefined) {
-			revslider_showDoubleJqueryError("#rev_slider_1_1");
-		} else {
-			revapi1 = tpj("#rev_slider_1_1").show().revolution({
-				sliderType :"standard",
-				sliderLayout :"auto",
-				dottedOverlay :"none",
-				delay : 9000,
-				navigation : {
-					onHoverStop :"off",
-				},
-				visibilityLevels : [1240, 1024, 778, 480],
-				gridwidth : 1080,
-				gridheight : 720,
-				lazyType :"none",
-				shadow : 0,
-				spinner :"spinner3",
-				stopLoop :"off",
-				stopAfterLoops : -1,
-				stopAtSlide : -1,
-				shuffle :"off",
-				autoHeight :"off",
-				disableProgressBar :"on",
-				hideThumbsOnMobile :"off",
-				hideSliderAtLimit : 0,
-				hideCaptionAtLimit : 0,
-				hideAllCaptionAtLilmit : 0,
-				debugMode : false,
-				fallbacks : {
-					simplifyAll :"off",
-					nextSlideOnWindowFocus :"off",
-					disableFocusListener : false,
-				}
-			});
-		};
-	};
-}());   
-    </script>
+ 
 
 </html>

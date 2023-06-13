@@ -1,121 +1,128 @@
 <template lang="pug">
 #Content
-transition(appear duration='550' name='nested')
-  .outer(style='transition-delay: 1s')
-    headimage-component
-br    
-
-.section_wrapper.mcb-section-inner
-  .wrap.mcb-wrap.one.valign-top.clearfix
-    .mcb-wrap-inner
-      .column.mcb-column.one-sixth.column_placeholder
-        .placeholder
-      .column.mcb-column.two-third.column_column
-        .column_attr.clearfix.align_center
-          v-typical.blink(:steps="['FORTALECIENDO', 3000, 'IMPULSANDO', 3000, 'PREPARANDO', 3000]" :loop='Infinity' :wrapper="'h6'") 
-          h6 A LOS JOVENES EMPRESARIOS
-          hr.no_line(style='margin:0 auto 10px')
-          h2 Siempre buscando elevar la calidad, posicionamiento y competitividad de las empresas duranguenses.
-
-.section.mcb-section.no-margin-h.no-margin-v.equal-height-wrap(style='padding-top:0px; padding-bottom:125px; background-image:url(content/builder2/images/builder2-home-grey-square-bg.png); background-repeat:no-repeat; background-position:left top')  
-  .section.mcb-section(style='padding-top:0px; padding-bottom:30px')
-    .section_wrapper.mcb-section-inner
-      .wrap.mcb-wrap.one-fourth.valign-top.bg-contain.clearfix(style='padding:100px 20px; background-image:url("/content/builder2/images/builder2-featured-bg.png"); background-repeat:no-repeat; background-position:left center')
-        .mcb-wrap-inner
-          .column.mcb-column.one.column_image
-            .image_frame.image_item.no_link.scale-with-grid.aligncenter.no_border
-              .image_wrapper
-                img.scale-with-grid(src='/content/builder2/images/builder2-home-featured-icon1.png')
-          .column.mcb-column.one.column_column
-            .column_attr.clearfix.align_center(style='padding:0 4%;')
-              hr.no_line(style='margin:0 auto 10px')
-              h3 Constructions
-              hr.no_line(style='margin:0 auto 30px')
-              p
-                | Vivamus in diam turpis. In condimentum maximus tristique vestibulum.
-      .wrap.mcb-wrap.one-fourth.valign-top.bg-contain.clearfix(style='padding:100px 20px; background-image:url(/content/builder2/images/builder2-featured-bg.png); background-repeat:no-repeat; background-position:left center')
-        .mcb-wrap-inner
-          .column.mcb-column.one.column_image
-            .image_frame.image_item.no_link.scale-with-grid.aligncenter.no_border
-              .image_wrapper
-                img.scale-with-grid(src='/content/builder2/images/builder2-home-featured-icon2.png')
-          .column.mcb-column.one.column_column
-            .column_attr.clearfix.align_center(style='padding:0 4%;')
-              hr.no_line(style='margin:0 auto 10px')
-              h3 Problem solving
-              hr.no_line(style='margin:0 auto 30px')
-              p
-                | Vivamus in diam turpis. In condimentum maximus tristique vestibulum.
-      .wrap.mcb-wrap.one-fourth.valign-top.bg-contain.clearfix(style='padding:100px 20px; background-image:url(/content/builder2/images/builder2-featured-bg.png); background-repeat:no-repeat; background-position:left center')
-        .mcb-wrap-inner
-          .column.mcb-column.one.column_image
-            .image_frame.image_item.no_link.scale-with-grid.aligncenter.no_border
-              .image_wrapper
-                img.scale-with-grid(src='content/builder2/images/builder2-home-featured-icon3.png')
-          .column.mcb-column.one.column_column
-            .column_attr.clearfix.align_center(style='padding:0 4%;')
-              hr.no_line(style='margin:0 auto 10px')
-              h3 Carpentry
-              hr.no_line(style='margin:0 auto 30px')
-              p
-                | Vivamus in diam turpis. In condimentum maximus tristique vestibulum.
-      .wrap.mcb-wrap.one-fourth.valign-top.bg-contain.clearfix(style='padding:100px 20px; background-image:url(content/builder2/images/builder2-featured-bg.png); background-repeat:no-repeat; background-position:left center')
-        .mcb-wrap-inner
-          .column.mcb-column.one.column_image
-            .image_frame.image_item.no_link.scale-with-grid.aligncenter.no_border
-              .image_wrapper
-                img.scale-with-grid(src='content/builder2/images/builder2-home-featured-icon4.png')
-          .column.mcb-column.one.column_column
-            .column_attr.clearfix.align_center(style='padding:0 4%;')
-              hr.no_line(style='margin:0 auto 10px')
-              h3 Management
-              hr.no_line(style='margin:0 auto 30px')
-              p
-                | Vivamus in diam turpis. In condimentum maximus tristique vestibulum.
-.section.mcb-section(style='padding-top:0px; padding-bottom:0px; background-image:url(./content/builder2/images/builder2-home-red-square-bg.png); background-repeat:no-repeat; background-position:right top')
-  .section.mcb-section(style='padding-top:50px; padding-bottom:75px')
-    .section_wrapper.mcb-section-inner
-      .wrap.mcb-wrap.one.valign-top.clearfix
-        .mcb-wrap-inner
-          .column_attr.clearfix.align_center
-            h2(style="color: #e22222") Responsabilidad Empresarial
-
-.section.mcb-section(style='padding-top:0px; padding-bottom:0px; background-image:url(./content/builder2/images/builder2-home-red-square-bg.png); background-repeat:no-repeat; background-position:left top')
+  transition(appear duration='550' name='nested')
+    headimage-component(style='transition-delay: 1s')
+br   
+br 
+div(data-aos='fade-down')
   .section_wrapper.mcb-section-inner
-    .wrap.mcb-wrap.two-fifth.valign-middle.bg-cover.clearfix(style='padding:30px 4%; background-image:url(content/builder2/images/builder2-slider-boxbg-red.png); background-repeat:no-repeat; background-position:right top')
+    .wrap.mcb-wrap.one.valign-top.clearfix
       .mcb-wrap-inner
-        .column.mcb-column.one.column_column
-          .column_attr.clearfix.align_center(style='padding:50px;')
-            .image_frame.image_item.no_link.scale-with-grid.no_border
-              .image_wrapper
-                img.scale-with-grid(src='content/builder2/images/builder2-home-ruller.png')
-            hr.no_line(style='margin:0 auto 30px')
-            h4(style='color:#fff') Nuestros objetivos
-            hr.no_line(style='margin:0 auto 10px')
-            p(style='color:#fff')
-              | Agrupar jóvenes empresarios de pequeñas, medianas o grandes empresas con la finalidad de elevar la calidad, posicionamiento y competitividad de sus negocios.
-
-    .wrap.mcb-wrap.two-fifth.valign-middle.bg-cover.clearfix(style='padding:50px 2%;')
-      .mcb-wrap-inner
-        .column.mcb-column.one.column_column
-          .column_attr.clearfix.align_center(style='padding:40px;')
-            .image_frame.image_item.no_link.scale-with-grid.no_border
-              .image_wrapper
-                i(class="icon-money-line" style="font-size: 3rem")
-            hr.no_line(style='margin:0 auto 30px')
-            h4 Crecimiento económico
-            hr.no_line(style='margin:0 auto 10px')
-            p
-              | La integración entre los afiliados permite la generación de valor para todos los involucrados, nuevos negocios, crecimiento económico y de las organizaciones.
-            
-.section.mcb-section.no-margin-h.no-margin-v.equal-height-wrap(style='padding-top:0px; padding-bottom:125px; background-image:url(content/builder2/images/builder2-home-grey-square-bg.png); background-repeat:no-repeat; background-position:right top')  
-  .section.mcb-section(style='padding-top:50px; padding-bottom:75px')
-    .section_wrapper.mcb-section-inner
-      .wrap.mcb-wrap.one.valign-top.clearfix
-        .mcb-wrap-inner  
+        .column.mcb-column.one-sixth.column_placeholder
+          .placeholder
+        .column.mcb-column.two-third.column_column
           .column_attr.clearfix.align_center
-            h2(style="color: #e22222") Nuestra comunidad
-            a.twitter-timeline(href='https://twitter.com/CEJDurango?ref_src=twsrc%5Etfw' data-tweet-limit="3") Tweets by CEJDurango
+            hr.no_line(style='margin:0 auto 10px')
+            h2 Siempre buscando elevar la calidad, posicionamiento y competitividad de las empresas duranguenses.
+div(data-aos='fade-down')
+  .section.mcb-section.no-margin-h.no-margin-v.equal-height-wrap(style='padding-top:0px; padding-bottom:125px; background-image:url(content/builder2/images/builder2-home-grey-square-bg.png); background-repeat:no-repeat; background-position:left top')  
+    .section.mcb-section(style='padding-top:0px; padding-bottom:30px')
+      .section_wrapper.mcb-section-inner
+        div(data-aos='fade-right')
+          .wrap.mcb-wrap.one-fourth.valign-top.bg-contain.clearfix(style='padding:100px 20px; background-image:url("/content/builder2/images/builder2-featured-bg.png"); background-repeat:no-repeat; background-position:left center')
+            .mcb-wrap-inner
+              .column.mcb-column.one.column_image
+                .image_frame.image_item.no_link.scale-with-grid.aligncenter.no_border
+                  .image_wrapper
+                    i(class="icon-lightbulb-line" style="font-size: 3rem; color: #e61346") 
+              .column.mcb-column.one.column_column
+                .column_attr.clearfix.align_center(style='padding:0 4%;')
+                  hr.no_line(style='margin:0 auto 10px')
+                  h3 Fomentar el espíritu emprendedor
+                  hr.no_line(style='margin:0 auto 30px')
+                  p
+                    | Inspira a los jóvenes a explorar y desarrollar habilidades empresariales, brindándoles recursos, orientación y oportunidades para convertir sus ideas en proyectos empresariales exitosos.
+                    
+          
+          .wrap.mcb-wrap.one-fourth.valign-top.bg-contain.clearfix(style='padding:100px 20px; background-image:url(/content/builder2/images/builder2-featured-bg.png); background-repeat:no-repeat; background-position:left center')
+            .mcb-wrap-inner
+              .column.mcb-column.one.column_image
+                .image_frame.image_item.no_link.scale-with-grid.aligncenter.no_border
+                  .image_wrapper
+                    i(class="icon-network" style="font-size: 3rem; color: #e61346") 
+              .column.mcb-column.one.column_column
+                .column_attr.clearfix.align_center(style='padding:0 4%;')
+                  hr.no_line(style='margin:0 auto 10px')
+                  h3 Promover el networking y la colaboración
+                  hr.no_line(style='margin:0 auto 30px')
+                  p
+                    | Facilita la creación de redes profesionales y fomenta la colaboración entre los jóvenes empresarios de Durango, creando un espacio donde puedan compartir conocimientos, experiencias y oportunidades de negocio.
+        div(data-aos='fade-left')
+          .wrap.mcb-wrap.one-fourth.valign-top.bg-contain.clearfix(style='padding:100px 20px; background-image:url(/content/builder2/images/builder2-featured-bg.png); background-repeat:no-repeat; background-position:left center')
+            .mcb-wrap-inner
+              .column.mcb-column.one.column_image
+                .image_frame.image_item.no_link.scale-with-grid.aligncenter.no_border
+                  .image_wrapper
+                    i(class="icon-mic" style="font-size: 3rem; color: #e61346") 
+              .column.mcb-column.one.column_column
+                .column_attr.clearfix.align_center(style='padding:0 4%;')
+                  hr.no_line(style='margin:0 auto 10px')
+                  h3 Impulsar la capacitación y el aprendizaje continuo
+                  hr.no_line(style='margin:0 auto 30px')
+                  p
+                    | Organiza eventos, talleres y conferencias que brinden a los jóvenes empresarios acceso a información actualizada, nuevas tendencias y habilidades clave para el mundo empresarial en constante cambio.
+          .wrap.mcb-wrap.one-fourth.valign-top.bg-contain.clearfix(style='padding:100px 20px; background-image:url(content/builder2/images/builder2-featured-bg.png); background-repeat:no-repeat; background-position:left center')
+            .mcb-wrap-inner
+              .column.mcb-column.one.column_image
+                .image_frame.image_item.no_link.scale-with-grid.aligncenter.no_border
+                  .image_wrapper
+                    i(class="icon-leaf" style="font-size: 3rem; color: #e61346") 
+              .column.mcb-column.one.column_column
+                .column_attr.clearfix.align_center(style='padding:0 4%;')
+                  hr.no_line(style='margin:0 auto 10px')
+                  h3 Impulsar la responsabilidad social empresarial.
+                  hr.no_line(style='margin:0 auto 30px')
+                  p
+                    | Compromiso de promover y fomentar prácticas empresariales que tengan en cuenta el impacto social y ambiental.
+
+div(data-aos='fade-left')
+  .section.mcb-section(style='padding-top:0px; padding-bottom:0px; background-image:url(./content/builder2/images/builder2-home-red-square-bg.png); background-repeat:no-repeat; background-position:right top')
+    .section.mcb-section(style='padding-top:50px; padding-bottom:75px')
+      .section_wrapper.mcb-section-inner
+        .wrap.mcb-wrap.one.valign-top.clearfix
+          .mcb-wrap-inner
+            .column_attr.clearfix.align_center
+              h2(style="color: #e22222") Responsabilidad Empresarial
+div(data-aos='fade-down')
+  .section.mcb-section(style='padding-top:0px; padding-bottom:0px; background-image:url(./content/builder2/images/builder2-home-red-square-bg.png); background-repeat:no-repeat; background-position:left top')
+    .section_wrapper.mcb-section-inner
+      div(data-aos='fade-right')
+        .wrap.mcb-wrap.two-fifth.valign-middle.bg-cover.clearfix(style='padding:50px 2%;')
+          .mcb-wrap-inner
+            .column.mcb-column.one.column_column
+              .column_attr.clearfix.align_center(style='padding:40px;')
+                .image_frame.image_item.no_link.scale-with-grid.no_border
+                  .image_wrapper
+                    i(class="icon-money-line" style="font-size: 3rem")
+                hr.no_line(style='margin:0 auto 30px')
+                h4 Crecimiento económico
+                hr.no_line(style='margin:0 auto 10px')
+                p
+                  | La integración entre los afiliados permite la generación de valor para todos los involucrados, nuevos negocios, crecimiento económico y de las organizaciones.
+      div(data-aos='fade-left')
+        .wrap.mcb-wrap.two-fifth.valign-middle.bg-cover.clearfix(style='padding:30px 4%; background-image:url(content/builder2/images/builder2-slider-boxbg-red.png); background-repeat:no-repeat; background-position:right top')
+          .mcb-wrap-inner
+            .column.mcb-column.one.column_column
+              .column_attr.clearfix.align_center(style='padding:50px;')
+                .image_frame.image_item.no_link.scale-with-grid.no_border
+                  .image_wrapper
+                    i(class="icon-target" style="font-size: 3rem; color: #ffffff") 
+                hr.no_line(style='margin:0 auto 30px')
+                h4(style='color:#fff') Nuestros objetivos
+                hr.no_line(style='margin:0 auto 10px')
+                p(style='color:#fff')
+                  | Agrupar jóvenes empresarios de pequeñas, medianas o grandes empresas con la finalidad de elevar la calidad, posicionamiento y competitividad de sus negocios.
+br
+br
+div(data-aos='fade-down')              
+    .section.mcb-section.no-margin-h.no-margin-v.equal-height-wrap(style='padding-top:0px; padding-bottom:125px; background-image:url(content/builder2/images/builder2-home-grey-square-bg.png); background-repeat:no-repeat; background-position:right top')  
+      .section.mcb-section(style='padding-top:50px; padding-bottom:75px')
+        .section_wrapper.mcb-section-inner
+          .wrap.mcb-wrap.one.valign-top.clearfix
+            .mcb-wrap-inner  
+              .column_attr.clearfix.align_center
+                h2(style="color: #e22222") Nuestra comunidad
+                a.twitter-timeline(href='https://twitter.com/CEJDurango?ref_src=twsrc%5Etfw' data-tweet-limit="3") Tweets by CEJDurango
 
 
 

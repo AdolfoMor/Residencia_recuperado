@@ -6,10 +6,16 @@
     .input-group-btn
         button.btn.btn-default(type='button'  @click="buscarAfiliado") Go!
 
-transition(appear duration='550' name='nested')
+div(data-aos='fade-up')
     .row.col-md-8.mx-auto.mt-3( style='transition-delay: 1s')
         .card.w-7.m-5(style='width: 18rem; background-color: rgba(0, 0, 0, 0.03);' v-for = "user in users" )
-            img.card-img-top.mx-auto.d-block.m-3(:src='user.Logo' alt='Card image cap' style="width:250px;height:auto;") 
+            .conta
+                img.card-img-top.mx-auto.d-block.m-3(:src='user.Logo' alt='Card image cap' style="width:250px; height:auto;") 
+                .overlay(v-for="direccion in user.direcciones")
+                    .text 
+                        h3 Sucursal
+                        p  {{direccion.Dirección}}
+                        p Teléfono
             .card-body
                 h5.card-title {{user.Nombre}}
                 p.card-text
@@ -18,21 +24,6 @@ transition(appear duration='550' name='nested')
                 li.list-group-item Teléfono: {{user.Teléfono}}
                 li.list-group-item Dirección: {{user.Dirección}}
             ul.list-group.list-group-flush
-                n-button(@click='showModal = true')
-                    | Mostrar Sucursales
-
-            n-modal.custom-card(v-model:show='showModal' preset='card' :style='bodyStyle' title='Modal' :bordered='false' size='huge' :segmented='segmented' v-for = "direccion in users.direcciones")
-                template(#header-extra='')
-                    | Oops!
-                |     Content {{direccion.Dirección}}
-                template(#footer='')
-                    | Footer
-
-
-
-
-
-
 
 </template>
 <script setup>
@@ -150,5 +141,38 @@ export default {
     has been fixed.
   */
   opacity: 0.001;
+}
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.imager {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.conta:hover .overlay {
+  opacity: 1;
+}
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #e61346;
 }
 </style>

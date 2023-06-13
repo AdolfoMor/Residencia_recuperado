@@ -1,34 +1,20 @@
 <template lang="pug">
-#Wrapper
-  #Header_wrapper
-    .header#Header
-      #Top_bar
-        .container
-          .column.one
-            .top_bar_left.clearfix
-              .logo
-                a#logo(href="/home" title='Consejo de Empresarios Jovenes' data-height='400' data-padding='15')
-                  img.logo-main.scale-with-grid(src='/content/builder2/images/logo-cej.png' data-retina='/content/builder2/images/logo-cej.png' data-height='100')
-                  img.logo-sticky.scale-with-grid(src='/content/builder2/images/logo-cej.png' data-retina='/content/builder2/images/logo-cej.png' data-height='100')
-                  img.logo-mobile.scale-with-grid(src='/content/builder2/images/logo-cej.png' data-retina='/content/builder2/images/logo-cej.png' data-height='100')
-                  img.logo-mobile-sticky.scale-with-grid(src='/content/builder2/images/logo-cej.png' data-retina='/content/builder2/images/logo-cej.png' data-height='100')
-              .menu_wrapper
-                nav#menu
-                  ul#menu-menu.menu.menu-main
-                    li
-                      a(href="/home")
-                        span Inicio
-                    li
-                      a(href="/Directorio")
-                        span Directorio
-                    li
-                      a(href='/Direcciones')
-                        span Direcciones
-                    li 
-                      a(href='/Direcciones')
-                          span Direcciones
-                a.responsive-menu-toggle(href='#')
-                  i.icon-menu-fine
+nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top
+  .container
+    a.navbar-brand(href="/home" title='Consejo de Empresarios Jovenes')
+      img.logo-main.scale-with-grid(src='/content/builder2/images/logo-cej.png' data-retina='/content/builder2/images/logo-cej.png' width="100" height="100")
+    button.navbar-toggler.ml-auto(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.menu.menu-main.navbar-nav.ml-auto
+        li.nav-item
+          a.nav-link(href="/home") Inicio
+        li.nav-item
+          a.nav-link(href='/Directorio') Directiorio
+        li.nav-item
+          a.nav-link.disabled.responsive-menu-toggle(href='#') Disabled
+
+
 
 </template>
 <script>
@@ -41,3 +27,10 @@ export default{
   }
 }
 </script>
+<style scoped>
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+</style>

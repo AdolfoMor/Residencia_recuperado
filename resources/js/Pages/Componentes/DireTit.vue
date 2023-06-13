@@ -1,8 +1,9 @@
 <template lang="pug">
-#Subheader(style='padding:125px 0;')
-  .container
-    .column.one
-      h1.title Directorio Empresarial 
+div(data-aos='fade-left')
+  #Subheader(style='padding:125px 0;')
+    .container
+      .column.one
+          h1.title Directorio Empresarial 
 
 
 empresa-component
