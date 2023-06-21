@@ -1,14 +1,13 @@
 <template lang="pug">
 .row.col-md-8.mx-auto.mt-3 
-  .col-sm-12.col-md-2
+  .col-sm-8
     .form-group.bmd-form-group.is-filled
       input.form-control.has-tooltip(v-model="busqueda" placeholder='Buscar: ej. Limpieza' data-original-title='null' )
-    .input-group-btn
-        button.btn.btn-default(type='button'  @click="buscarAfiliado") Go!
+  button.btn.btn-default(type='button'  @click="buscarAfiliado") Go!
 
 div(data-aos='fade-up')
-    .row.col-md-8.mx-auto.mt-3( style='transition-delay: 1s')
-        .card.w-7.m-5(style='width: 18rem; background-color: rgba(0, 0, 0, 0.03);' v-for = "user in users" )
+    .row.col-md-10.mx-auto.mt-3( style='transition-delay: 1s')
+        .card.w-7.m-5(style='width: 25rem; background-color: rgba(0, 0, 0, 0.03);' v-for = "user in users" )
             .conta
                 img.card-img-top.mx-auto.d-block.m-3(:src='user.Logo' alt='Card image cap' style="width:250px; height:auto;") 
                 .overlay(v-for="direccion in user.direcciones")

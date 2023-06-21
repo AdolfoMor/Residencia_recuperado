@@ -12,7 +12,7 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top
         li.nav-item
           a.nav-link(href='/Directorio') Directiorio
         li.nav-item
-          a.nav-link.disabled.responsive-menu-toggle(href='#') Disabled
+          a.nav-link(href='/acerca') Sobre Nosotros
 
 
 

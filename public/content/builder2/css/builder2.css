@@ -28,9 +28,10 @@
   background-repeat: no-repeat;
 }
 #Subheader {
-	background-image: url(../images/builder2-subheader-bg.png);
+	background-image: url(../images/acerca.jpg);
 	background-repeat: no-repeat;
-	background-position: right center
+	background-position: center;
+	background-size: cover;
 }
 #Footer {
 	background-image: url(../images/builder2-footer-bg.png);

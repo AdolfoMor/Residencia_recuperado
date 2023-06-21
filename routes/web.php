@@ -40,7 +40,9 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return Inertia::render('home')->rootView("web");
 });
-
+Route::get('/acerca', function () {
+    return Inertia::render('acerca')->rootView("web");
+});
 Route::get('/projects', function () {
     return View('projects');
 });
@@ -57,6 +59,9 @@ Route::get('/Usuario', function () {
 });
 Route::get('/Afiliados', function () {
     return Inertia::render('demo')->rootView("layout");
+});
+Route::get('/Afiliados/DireccionesV/{DireccionesID}', function ($DireccionesID) {
+    return Inertia::render('DireccionesV')->with(['DireccionesID'=>$DireccionesID])->rootView('layout');
 });
 Route::prefix('admin')->group(function(){
     Route::get('/dashboard', function () {

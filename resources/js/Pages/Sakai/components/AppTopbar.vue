@@ -1,5 +1,5 @@
 <template lang="pug">
-div.layout-topbar
+.layout-topbar
     a.layout-topbar-logo(href="/")
         img(:src="logoUrl" alt="logo")
         span Plataforma CJE
