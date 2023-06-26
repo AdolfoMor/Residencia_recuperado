@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DireccionRequest extends FormRequest
+class EstructuraRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,13 +24,9 @@ class DireccionRequest extends FormRequest
     public function rules()
     {
         return [
-            'Estado' => 'required',
-            'Ciudad' => 'required',
-            'Calle' => 'required',
-            'Colonia' => 'required',
-            'Numero' => 'required',
-            'Telefono' => 'required',
-            'afiliado_id' => 'required',
+            'Nombre' => 'required',
+            'Posicion' => 'required',
+            'Foto',
         ];
     }
 }

@@ -28,7 +28,7 @@ const model = ref([
                 icon: 'pi pi-fw pi-bookmark',
                 items: [
                     { label: 'Inicio', icon: 'pi pi-fw pi-home', url: '/Afiliados' },
-                    { label: 'Estructura Orgánica', icon: 'pi pi-fw pi-users' }
+                    { label: 'Estructura Orgánica', icon: 'pi pi-fw pi-users' , url: '/Estructura'}
                 ]
             }
         ]

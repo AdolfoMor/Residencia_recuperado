@@ -4,6 +4,7 @@ sakai
     .col-12 
       .row
         .card
+          h2 Afiliados
           tool-bar-component.mb-4
             template(#start='')
               button-component.mr-2(label='Agregar' icon='pi pi-plus' severity='success' @click.prevent='openNew')
@@ -23,7 +24,7 @@ sakai
                     i.pi.pi-pencil
                   button-component.btn.btn-danger(@click="remove(row)" v-tooltip="'Eliminar afiliado'" title="Eliminar afiliado")
                     i.pi.pi-trash
-                  a.btn.btn-secondary.mr-1(:href="'Afiliados/DireccionesV/'+ row.id" v-tooltip="'Gestionar direcciones'" title="Gestionar direcciones")
+                  a.btn.btn-secondary.mr-1(:href="'/DireccionesV/'+ row.id" v-tooltip="'Gestionar direcciones'" title="Gestionar direcciones")
                     i.pi.pi-building
 
     dialog-component.p-fluid(v-model:visible='afiliadoDialog', :style="{width: '750px'}", header='Agregar nuevo afiliado', :modal='true')

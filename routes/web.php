@@ -5,6 +5,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AfiliadoController;
+use App\Http\Controllers\EstructuraController;
+use App\Http\Controllers\UserController;
 
 
 /*
@@ -60,7 +62,10 @@ Route::get('/Usuario', function () {
 Route::get('/Afiliados', function () {
     return Inertia::render('demo')->rootView("layout");
 });
-Route::get('/Afiliados/DireccionesV/{DireccionesID}', function ($DireccionesID) {
+Route::get('/Estructura', function () {
+    return Inertia::render('estructuraO')->rootView("layout");
+});
+Route::get('/DireccionesV/{DireccionesID}', function ($DireccionesID) {
     return Inertia::render('DireccionesV')->with(['DireccionesID'=>$DireccionesID])->rootView('layout');
 });
 Route::prefix('admin')->group(function(){

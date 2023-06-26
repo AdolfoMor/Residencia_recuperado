@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Direcciones;
+use App\Models\Afiliado;
 use Illuminate\Http\Request;
 use App\Http\Requests\DireccionRequest;
 use App\Http\Resources\DireccionResource;
+use App\Http\Resources\AfiliadoResource;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Redirect;
 
@@ -51,10 +53,10 @@ class DireccionesController extends Controller
      * @param  \App\Models\Direcciones  $direcciones
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $term)
+    public function show(string $id)
     {
-        $variable = Direcciones::where('Dirección', 'like', '%'.$term.'%')->get();
-        return DireccionResource::collection($variable);
+        $direcciones = Direcciones::whereafiliado_id($id)->get();
+        return new DireccionResource($direcciones);
     }
 
     /**
@@ -78,8 +80,13 @@ class DireccionesController extends Controller
     public function update(DireccionRequest $request, string $id)
     {
         $direcciones = Direcciones::find($id);
-        $direcciones->Dirección = $request->input('Dirección');
-        $direcciones->afiliado_fk = $request->input('afiliado_fk');
+        $direcciones->Estado = $request->input('Estado');
+        $direcciones->Ciudad = $request->input('Ciudad');
+        $direcciones->Calle = $request->input('Calle');
+        $direcciones->Numero = $request->input('Numero');
+        $direcciones->Colonia = $request->input('Colonia');
+        $direcciones->Telefono = $request->input('Estado');
+        $direcciones->afiliado_id = $request->input('afiliado_id');
         $direcciones->save();
 
         return new DireccionResource($direcciones);

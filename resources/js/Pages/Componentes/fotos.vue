@@ -1,8 +1,23 @@
 <template lang="pug">
+div(data-aos='fade-up' data-aos-anchor-placement='bottom-bottom')
+  .section.mcb-section.dark.full-screen(style='padding-top:105px; padding-bottom:0px; background-color:#f82f2f')
+    .section_wrapper.mcb-section-inner
+      .wrap.mcb-wrap.one.valign-top.clearfix
+        .mcb-wrap-inner
+          .column.mcb-column.one-sixth.column_placeholder
+            .placeholder
+          .column.mcb-column.two-third.column_column
+            .column_attr.clearfix.align_center
+              h6(style='color:#000') Conoce nuestro equipo 
+              hr.no_line(style='margin:0 auto 20px')
+              h2  Uniendo talento y pasión
+              hr.no_line(style='margin:0 auto 60px')
+
+
 section#section-team.no-padding(style='background-size: cover;')
-  .container-fluid(style='background-size: cover;')
-    .row.no-gutters(style='background-size: cover;')
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
+  .row.col-md-10.mx-auto.mt-3
+    .col-lg-3.col-md-6.col-sm-8(v-for = "user in users")
+      div(data-aos='zoom-in-down' data-aos-anchor-placement='bottom-bottom')
         .profile_pic.text-center(style='background-size: cover;')
           figure.picframe.sc-icon.mb20
             .icons(style='background-size: cover;')
@@ -14,175 +29,9 @@ section#section-team.no-padding(style='background-size: cover;')
                 i.fa.fa-linkedin.fa-lg
               a(href='https://instagram.com/alextregam' target='_blank')
                 i.fa.fa-instagram.fa-lg
-            img.img-fluid(src='content/builder2/images/Consejo/gaby.jpg' alt='')
-          h3 Alejandro Trevi&ntilde;o
-          span.subtitle Presidente
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-              a(href='#' target='_blank')
-                i.fa.fa-facebook.fa-lg
-              a(href='#' target='_blank')
-                i.fa.fa-twitter.fa-lg
-              a(href='#' target='_blank')
-                i.fa.fa-linkedin.fa-lg
-              a(href='#' target='_blank')
-                i.fa.fa-google-plus.fa-lg
-            img.img-fluid(src='/site/images/team/michelle.jpg' alt='')
-          h3 Michelle Hernandez
-          span.subtitle Vicepresidenta
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-              a(href='https://www.facebook.com/karenrivass' target='_blank')
-                i.fa.fa-facebook.fa-lg
-              a(href='https://www.twitter.com/karennrs' target='_blank')
-                i.fa.fa-twitter.fa-lg
-              a(href='https://instagram.com/karennrs' target='_blank')
-                i.fa.fa-instagram.fa-lg
-            img.img-fluid(src='/site/images/team/karen.jpg' alt='')
-          h3 Karen Rivas
-          span.subtitle Secretaria
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-              a(href='https://facebook.com/lizgtzserrano' target='_blank')
-                i.fa.fa-facebook.fa-lg
-              a(href='https://www.twitter.com/lizgtzserrano' target='_blank')
-                i.fa.fa-twitter.fa-lg
-              a(href='https://instagram.com/lizgtzserrano' target='_blank')
-                i.fa.fa-instagram.fa-lg
-            img.img-fluid(src='/site/images/team/liz.jpg' alt='')
-          h3 Lizeth Gutierrez
-          span.subtitle Tesorera
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-              a(href='https://www.facebook.com/gabydsadaptadadlkmpo' target='_blank')
-                i.fa.fa-facebook.fa-lg
-              a(href='https://twitter.com/gAbYMaDkM' target='_blank')
-                i.fa.fa-twitter.fa-lg
-              a(href='https://www.linkedin.com/in/gabriela-m-del-campo-flores-300b3b10b/' target='_blank')
-                i.fa.fa-linkedin.fa-lg
-              a(href='https://www.instagram.com/delcampogaby/' target='_blank')
-                i.fa.fa-instagram.fa-lg
-            img.img-fluid(src='/site/images/team/gaby.jpg' alt='')
-          h3 Gaby del Campo
-          span.subtitle Directora de Mujeres
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-              a(href='https://www.facebook.com/paola.rivass.1?mibextid=LQQJ4d' target='_blank')
-                i.fa.fa-facebook.fa-lg
-              a(href='https://twitter.com/paola_rss' target='_blank')
-                i.fa.fa-twitter.fa-lg
-              a(href='https://www.linkedin.com/in/paola-viridiana-rivas-santill%C3%A1n-353368184/' target='_blank')
-                i.fa.fa-linkedin.fa-lg
-              a(href='https://instagram.com/paola29rs' target='_blank')
-                i.fa.fa-instagram.fa-lg
-            img.img-fluid(src='/site/images/team/paola.jpg' alt='')
-          h3 Paola Rivas
-          span.subtitle Directora de Afiliaci&oacute;n
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-              a(href='https://www.facebook.com/paola.rivass.1?mibextid=LQQJ4d' target='_blank')
-                i.fa.fa-facebook.fa-lg
-              a(href='https://twitter.com/paola_rss' target='_blank')
-                i.fa.fa-twitter.fa-lg
-              a(href='https://www.linkedin.com/in/paola-viridiana-rivas-santill%C3%A1n-353368184/' target='_blank')
-                i.fa.fa-linkedin.fa-lg
-              a(href='https://instagram.com/paola29rs' target='_blank')
-                i.fa.fa-instagram.fa-lg
-            img.img-fluid(src='/site/images/team/mariana.jpg' alt='')
-          h3 Mariana Berumen
-          span.subtitle Directora de Eventos
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-              a(href='https://www.facebook.com/adan.retana.90' target='_blank')
-                i.fa.fa-facebook.fa-lg
-              a(href='https://twitter.com/adanretan' target='_blank')
-                i.fa.fa-twitter.fa-lg
-              a(href='https://instagram.com/adan.retana' target='_blank')
-                i.fa.fa-instagram.fa-lg
-            img.img-fluid(src='/site/images/team/adan.jpg' alt='')
-          h3 Adan Retana
-          span.subtitle Director de Capacitaci&oacute;n
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-            img.img-fluid(src='/site/images/team/erik.jpg' alt='')
-          h3 Erik Ortega
-          span.subtitle Director de Construcci&oacute;n
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-            img.img-fluid(src='/site/images/team/natalia.jpg' alt='')
-          h3 Natalia Berumen
-          span.subtitle Directora de Compromiso Social
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-            img.img-fluid(src='/site/images/team/soria.jpg' alt='')
-          h3 Mercedes Soria
-          span.subtitle Directora de Comercio
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-              a(href='https://www.facebook.com/mechegamboa?mibextid=LQQJ4d' target='_blank')
-                i.fa.fa-facebook.fa-lg
-              a(href='https://twitter.com/mercedesgamboa?s=11&t=K2_7rDAzkxx4spX9q84JMg' target='_blank')
-                i.fa.fa-twitter.fa-lg
-              a(href='https://www.linkedin.com/in/mercedes-elena-gamboa-cota-81408521' target='_blank')
-                i.fa.fa-linkedin.fa-lg
-              a(href='https://instagram.com/mercedesgamboa?igshid=MzRlODBiNWFlZA==' target='_blank')
-                i.fa.fa-instagram.fa-lg
-            img.img-fluid(src='/site/images/team/gamboa.jpg' alt='')
-          h3 Mercedes Gamboa
-          span.subtitle Directora de Medio Ambiente
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-              a(href='#' target='_blank')
-                i.fa.fa-facebook.fa-lg
-              a(href='#' target='_blank')
-                i.fa.fa-twitter.fa-lg
-              a(href='#' target='_blank')
-                i.fa.fa-linkedin.fa-lg
-              a(href='#' target='_blank')
-                i.fa.fa-google-plus.fa-lg
-            img.img-fluid(src='/site/images/team/isaias.jpg' alt='')
-          h3 Isaias Sigo&ntilde;a
-          span.subtitle Director de Desarrollo de Marca
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-        .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-              a(href='https://www.facebook.com/jimmy.reta?mibextid=ZbWKwL' target='_blank')
-                i.fa.fa-facebook.fa-lg
-              a(href='https://twitter.com/Jimmy_Reta?s=08' target='_blank')
-                i.fa.fa-twitter.fa-lg
-              a(href='https://instagram.com/jaimealejandrors?igshid=ZGUzMzM3NWJiOQ==' target='_blank')
-                i.fa.fa-instagram.fa-lg
-            img.img-fluid(src='/site/images/team/jimmy.jpg' alt='')
-          h3 Jaime Reta
-          span.subtitle Director de Enlace Universitario
-      .col-lg-3.col-md-6.col-sm-6(style='background-size: cover;')
-
+            img.img-fluid(:src='user.Foto' alt='')
+          h3 {{user.Nombre}}
+          span.subtitle {{user.Posicion}}
 </template>
 <script>
 import { NCarousel } from "naive-ui"
@@ -197,7 +46,9 @@ import { defineComponent, ref } from "vue";
 export default{
   data(){
     return{
-      show:true
+      show:true,
+      user: {},
+      users: [],
     }
   },
   props: {
@@ -211,6 +62,19 @@ export default{
     VuePrlx,
     headimageComponent
   },
+  methods: {
+    getUsers(){
+      axios.get('/api/estructura').then(response => {
+        this.users = response.data.data
+        //this.meta = response.data.meta
+      }).catch(errors => {
+        this.manageErrors(errors)
+      })
+    },
+    },
+    mounted(){
+      this.getUsers()
+    }
 }
 </script>
 <style scoped>

@@ -13,9 +13,9 @@ div(data-aos='fade-up')
                 .overlay(v-for="direccion in user.direcciones")
                     .text 
                         h3 Sucursal
-                        p  {{direccion.Dirección}}
-                        p Teléfono
-            .card-body
+                        p  {{direccion.Estado}}
+                        p Teléfono {{direccion.Telefono}}
+            .card-body  
                 h5.card-title {{user.Nombre}}
                 p.card-text
                 | {{user.Descripción}}

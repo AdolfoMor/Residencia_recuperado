@@ -4,7 +4,7 @@ sakai
         .col-12
             .card
                 .row
-                    .col-10 
+                    .col-10
                         h5 Direcciones
                     .col-2
                     tool-bar-component.mb-4
@@ -14,47 +14,48 @@ sakai
                 table-component(:columns="columns" :data="addresses" @filter="filterData($event, getAddresses)" :meta="meta" :params="params")
                     template(v-slot="{ row }")
                         tr
-                            td.p-6 {{ row.Dirección }}
+                            td.p-6 {{ row.Estado }}
+                            td.p-6 {{ row.Ciudad }}
+                            td.p-6 {{ row.Calle }}
+                            td.p-6 {{ row.Numero }}
+                            td.p-6 {{ row.Colonia }}
+                            td.p-6 {{ row.Telefono }}
                             td(align="center")
                                 button-component.btn.btn-primary.mr-1(@click="edit(row)" v-tooltip="'Gestionar direccione'" title="Gestionar direccione")
                                     i.pi.pi-pencil
                                 button-component.btn.btn-danger(@click="remove(row)" v-tooltip="'Eliminar direccione'" title="Eliminar direccione")
                                     i.pi.pi-trash
-        dialog-component.flex.flex-wrap.gap-3.p-fluid(header="Registro de direcciones"  :breakpoints="{ '160px': '75vw' }" :style="{ width: '80vw' }" v-model:visible="dialogs.create" :modal="true")
+        dialog-component.p-fluid(v-model:visible='afiliadoDialog', :style="{width: '750px'}", header='Dirección', :modal='true')
             form#createForm(@submit.prevent="store" ref="createForm")
                 .row 
                     div.col-12
                         transition-group(name="p-message" tag="div")
                             Message(v-for="msg of localErrors" severity="error" :key="msg") {{ msg }}
                     div.flex-auto
-                        label(for="stateClient") Estado 
-                        multi-select-component(v-model="address.state" :minChars="1" :delay="0" valueProp="id" :resolveOnLoad="true" :filterResults="false" :options="state" mode="single" :trackBy="'name'" :searchable="true" label="name" @select="getCities")
+                        label(for="Estado") Estado 
+                        inputtext-component#Estado(required='true', name="Estado" ,v-model='address.Estado', autofocus='', :class="{'p-invalid': submitted && !address.Estado}")
                     div.flex-auto
-                        label(for="cityClient") Ciudad 
-                        multi-select-component(v-model="address.city" :minChars="1" :delay="0" valueProp="id" :resolveOnLoad="true" :filterResults="false" :options="cities" mode="single" :trackBy="'name'" :searchable="true" label="name")
+                        label(for="Ciudad") Ciudad 
+                        inputtext-component#Ciudad(required='true', name="Ciudad" ,v-model='address.Ciudad', autofocus='', :class="{'p-invalid': submitted && !address.calle}")
                     div.col-5
                         span.p-float-label
-                            inputtext-component#customerRFC(type="text" name="street" v-model="address.street")
-                            label(for="customerRFC") Calle
+                            inputtext-component#Calle(type="text" name="Calle" v-model="address.Calle")
+                            label(for="Calle") Calle
                     div.col-2
                         span.p-float-label
-                            inputtext-component(type="text" id="userAddress" name="number" v-model="address.number" required="true")
-                            label(for="userAddress") Número
+                            inputtext-component#Numero(required='true', name="Numero" ,v-model='address.Numero', autofocus='', :class="{'p-invalid': submitted && !address.Numero}")
+                            label(for="Numero") Número
                     div.col-2
                         span.p-float-label
-                            inputtext-component(type="text" id="userAddress" name="letter" v-model="address.letter" required="false")
-                            label(for="userAddress") Letra 
+                            inputtext-component#Telefono(required='true', name="Telefono" ,v-model='address.Telefono', autofocus='', :class="{'p-invalid': submitted && !address.Telefono}")
+                            label(for="Telefono") Teléfono 
                     div.col-3
                         span.p-float-label
-                            inputtext-component(type="text" id="userAddress" name="suburb" v-model="address.suburb" required="true")
-                            label(for="userAddress") Colonia
-                    div.col-12
-                        span.p-float-label
-                            inputtext-component(type="text" id="userAddress" name="description" v-model="address.description" required="true")
-                            label(for="userAddress") Descripción
+                            inputtext-component#Colonia(required='true', name="Colonia" ,v-model='address.Colonia', autofocus='', :class="{'p-invalid': submitted && !address.Colonia}")
+                            label(for="Colonia") Colonia
             template(#footer)
                 button-component.p-button-outlined(label="Guardar" @click="$refs.createForm.requestSubmit()" icon="pi pi-check")
-                button-component.p-button-danger.p-button-outlined(label="Cancelar" @click.prevent="cancel" icon="pi pi-times")
+                button-component.p-button-danger.p-button-outlined(label="Cancelar" @click.prevent="hideDialog" icon="pi pi-times")
 </template>
 <script>
 import moment from 'moment';
@@ -90,17 +91,21 @@ export default {
             address: {},
             addresses: [],
             columns: [
-                { label: 'Dirección', field: 'city_id', sortable: true },
+                { label: 'Estado', field: 'Estado', sortable: true },
+                { label: 'Ciudad', field: 'Ciudad', sortable: true },
+                { label: 'Calle', field: 'Calle', sortable: true },
+                { label: 'Numero', field: 'Numero', sortable: true },
+                { label: 'Colonia', field: 'Colonia', sortable: true },
+                { label: 'Telefono', field: 'Telefono', sortable: true },
+                { label: 'Acciones', sortable: true },
             ],
-            dialogs: {
-                create: false
-            },
+            afiliadoDialog: false,
             meta: {
                 last_page: 1
             },
             moment: moment,
             params: {},
-            afiliados: [],
+            afiliado: null,
 
         }
     },
@@ -109,24 +114,32 @@ export default {
             axios.delete('/api/direcciones/' + address.id).then(respose => {
                 alert("Direccion eliminada correctamente")
                 this.getAddresses()
-                this.dialogs.create = false
+                this.afiliadoDialog = false
             }).catch(errors => {
                 this.manageErrors(errors)
             })
         },
         cancel(){
-            this.closeCreate()
+            this.hideDialog()
             this.address = {}
         },
-        closeCreate(){
-            this.dialogs.create = false
+        hideDialog() {
+            this.address = {};
+            this.afiliadoDialog = false;
+            this.submitted = false;
         },
         edit(address){
             this.address = address
-            this.address.city_id = address.address.city
+            this.address.Estado = address.Estado
+            this.address.Ciudad = address.Ciudad
+            this.address.Calle = address.Calle
+            this.address.Numero = address.Numero
+            this.address.Telefono = address.Telefono
+            this.address.edit = true
+            this.afiliadoDialog = true
         },
         getAddresses(){
-            axios.get('/api/afiliado/show/' + this.DireccionesID).then(response => {
+            axios.get('/api/direcciones/' + this.DireccionesID).then(response => {
                 this.addresses = response.data.data
             }).catch(errors => {
                 this.manageErrors(errors)
@@ -154,14 +167,14 @@ export default {
             })
         }, */ 
         openNew() {
-      if(this.user > 0){
-        this.afiliado = {};
-        this.afiliadoDialog = true;
-      }else{
-        this.user = {};
-        this.afiliado = {};
-        this.afiliadoDialog = true;
-      }
+            if(this.address > 0){
+                this.afiliado = {};
+                this.afiliadoDialog = true;
+            }else{
+                this.address = {};
+                this.afiliado = {};
+                this.afiliadoDialog = true;
+            }
         },
         store(){
             this.localErrors = []
@@ -170,20 +183,17 @@ export default {
             let ruta = window.location.pathname;
             let partes = ruta.split("/");
             let id = partes[partes.length - 1];
-            //console.log(id);
-            formData.append('client_id', id);
-            formData.append('city_id', this.address.city);
-            let url = '/api/address'
+            formData.append('afiliado_id', id);
+            let url = '/api/direcciones'
             if(this.address.edit){
                 formData.append('_method', 'PUT');
                 formData.append('id', this.address.id);
                 url = url + '/' + this.address.id
-            }
-            
+            } 
             axios.post(url, formData).then(respose => {
-                this.$toast.add({ severity: 'success', summary: 'Guardado correcto', detail: 'La dirección se ha guardado correctamente', life: 5000 });
+                alert("Éxito")
                 this.getAddresses()
-                this.dialogs.create = false
+                this.afiliadoDialog = false
             }).catch(errors => {
                 this.manageErrors(errors)
             })

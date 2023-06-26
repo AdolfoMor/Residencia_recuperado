@@ -13,15 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('direcciones', function (Blueprint $table) {
+        Schema::create('estructura', function (Blueprint $table) {
             $table->id();
-            $table->String("Estado");
-            $table->String("Ciudad");
-            $table->String("Calle");
-            $table->String("Numero");
-            $table->String("Colonia");
-            $table->String("Telefono");
-            $table->foreignId('afiliado_id')->constrained('afiliado');
+            $table->string("Nombre");
+            $table->string("Posicion");
+            $table->string("Foto");
+            $table->string("Facebook");
+            $table->string("Instagram");
+            $table->string("Linkedin");
+            $table->string("Twitter");
+            $table->string("Google");
             $table->timestamps();
         });
     }
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('direcciones');
+        Schema::dropIfExists('estructura');
     }
 };

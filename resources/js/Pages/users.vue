@@ -4,17 +4,16 @@ sakai
         .col-12 
             .row
                 .card
+                    h2 Usuarios
                     tool-bar-component.mb-4
                         template(#start='')
                             button-component.mr-2(label='Agregar' icon='pi pi-plus' severity='success' @click.prevent='openNew')
                         template(#end='')
                     table-component(:columns="columns" :data="users" @filter="filterData($event, getUsers)" :meta="meta" :params="params")
                         template(v-slot="{ row }")
-                            tr
+                            tr(align="center")
                                 td.p-6 {{ row.name }}
                                 td.p-6 {{ row.email }}
-                                td.p-6 
-                                    inputtext-component#contra(type="password" v-model='row.password' disabled='')          
                                 td(align="center")
                                     button-component.btn.btn-primary.mr-1(@click="edit(row)" v-tooltip="'Editar Afiliado'" title="Editar Afiliado")
                                         i.pi.pi-pencil
@@ -67,7 +66,6 @@ export default {
         columns: [
         { label: 'Nombre', field: 'Nombre', sortable: true},
         { label: 'Email', field: 'Correo Electrónico', sortable: true },
-        { label: 'Password', field: 'Contraseña', sortable: true },
         ],
         user: {},
         users: [],

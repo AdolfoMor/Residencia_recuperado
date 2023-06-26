@@ -4,17 +4,18 @@ sakai
         .col-12 
             .row
                 .card
+                    h2 Estructura Orgánica
                     tool-bar-component.mb-4
                         template(#start='')
                             button-component.mr-2(label='Agregar' icon='pi pi-plus' severity='success' @click.prevent='openNew')
                         template(#end='')
                     table-component(:columns="columns" :data="users" @filter="filterData($event, getUsers)" :meta="meta" :params="params")
                         template(v-slot="{ row }")
-                            tr
-                                td.p-6 {{ row.name }}
-                                td.p-6 {{ row.email }}
+                            tr(align="center")
+                                td.p-6 {{ row.Nombre }}
+                                td.p-6 {{ row.Posicion }}
                                 td.p-6 
-                                    inputtext-component#contra(type="password" v-model='row.password' disabled='')          
+                                    image-component(:src='row.Foto' alt="Image" width="150" preview )
                                 td(align="center")
                                     button-component.btn.btn-primary.mr-1(@click="edit(row)" v-tooltip="'Editar Afiliado'" title="Editar Afiliado")
                                         i.pi.pi-pencil
@@ -24,17 +25,16 @@ sakai
         dialog-component.p-fluid(v-model:visible='afiliadoDialog', :style="{width: '750px'}", header='Usuario', :modal='true')
             form#createForm(@submit.prevent="store" ref="createForm")
                 .field
-                    label(for='name') Nombre
-                    inputtext-component#name(required='true', name="name" ,v-model='user.name', autofocus='', :class="{'p-invalid': submitted && !user.name}")
-                    small.p-error(v-if='submitted && !user.name') Es requerido 
+                    label(for='Nombre') Nombre
+                    inputtext-component#name(required='true', name="Nombre" ,v-model='user.Nombre', autofocus='', :class="{'p-invalid': submitted && !user.Nombre}")
+                    small.p-error(v-if='submitted && !user.Nombre') Es requerido 
                 .field
-                    label(for='email') Correo electrónico
-                    inputtext-component#email(required='true', name="email", autofocus='',v-model='user.email', :class="{'p-invalid': submitted && !afiliado.email}")
-                    small.p-error(v-if='submitted && !user.email') Es requerido 
+                    label(for='Posicion') Posición
+                    inputtext-component#posicion(required='true', name="Posicion", autofocus='',v-model='user.Posicion', :class="{'p-invalid': submitted && !afiliado.Posicion}")
+                    small.p-error(v-if='submitted && !user.Posicion') Es requerido 
                 .field
-                    label(for='password') Contraseña
-                    inputtext-component#password(required='true', type='password', name="password", autofocus='', v-model='user.password', :class="{'p-invalid': submitted && !afiliado.password}")
-                    small.p-error(v-if='submitted && !user.password') Es requerido 
+                    label(for='password') Foto
+                    input#Foto(type='file' name='Foto' accept='image/png, image/jpeg')
             template(#footer='')
                 button-component(label='Cancelar' icon='pi pi-times' text='' @click='hideDialog')
                 button-component(label='Guardar' icon='pi pi-save' text='' @click="$refs.createForm.requestSubmit()")
@@ -66,8 +66,8 @@ export default {
     return {
         columns: [
         { label: 'Nombre', field: 'Nombre', sortable: true},
-        { label: 'Email', field: 'Correo Electrónico', sortable: true },
-        { label: 'Password', field: 'Contraseña', sortable: true },
+        { label: 'Posición', field: 'Posicion', sortable: true },
+        { label: 'Foto', field: 'Foto', sortable: true }
         ],
         user: {},
         users: [],
@@ -90,11 +90,11 @@ export default {
     },
     methods: {
     getUsers(){
-        axios.get('/api/users').then(response => {
-        this.users = response.data.data
-        //this.meta = response.data.meta
+        axios.get('/api/estructura').then(response => {
+            this.users = response.data.data
+            //this.meta = response.data.meta
         }).catch(errors => {
-        this.manageErrors(errors)
+            this.manageErrors(errors)
         })
     },
     onAdvancedUpload() {
@@ -104,18 +104,18 @@ export default {
         this.user = user
         // alert(JSON.stringify(customer))
         this.user.id = user.id
-        this.user.name = user.name
-        this.user.email = user.email
-        this.user.password = user.password
+        this.user.Nombre = user.Nombre
+        this.user.Posicion = user.Posicion
+        this.user.Foto = user.Foto
         this.user.edit = true
         this.afiliadoDialog = true
     },
     remove(user){
-        axios.delete('/api/users/' + user.id).then(respose => {
-        this.getUsers()
-        this.afiliadoDialog = false;
+        axios.delete('/api/estructura/' + user.id).then(respose => {
+            this.getUsers()
+            this.afiliadoDialog = false;
         }).catch(errors => {
-        this.manageErrors(errors)
+            this.manageErrors(errors)
         })
     },
     store(){
@@ -123,7 +123,7 @@ export default {
         let form = document.getElementById('createForm');
         let formData = new FormData(form);
         //alert(this.user.edit);
-        let url = '/api/users'
+        let url = '/api/estructura'
         if(this.user.edit){
             formData.append('_method', 'PUT');
             formData.append('id', this.user.id);
