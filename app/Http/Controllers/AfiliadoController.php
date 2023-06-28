@@ -85,8 +85,6 @@ class AfiliadoController extends Controller
         $afiliado = Afiliado::find($id);
         $afiliado->Nombre = $request->input('Nombre');
         $afiliado->RFC = $request->input('RFC');
-        $afiliado->Dirección = $request->input('Dirección');
-        $afiliado->Teléfono = $request->input('Teléfono');
         $afiliado->Descripción = $request->input('Descripción');
         if ($request->hasFile('Logo')) {
             // Get image actual route

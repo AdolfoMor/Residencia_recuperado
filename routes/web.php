@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\AfiliadoController;
 use App\Http\Controllers\EstructuraController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ContactController;
 
 
 /*
@@ -67,6 +68,9 @@ Route::get('/Estructura', function () {
 });
 Route::get('/DireccionesV/{DireccionesID}', function ($DireccionesID) {
     return Inertia::render('DireccionesV')->with(['DireccionesID'=>$DireccionesID])->rootView('layout');
+});
+Route::get('/Redes/{RedesID}', function ($RedesID) {
+    return Inertia::render('redes')->with(['RedesID'=>$RedesID])->rootView('layout');
 });
 Route::prefix('admin')->group(function(){
     Route::get('/dashboard', function () {

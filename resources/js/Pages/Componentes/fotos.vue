@@ -19,16 +19,20 @@ section#section-team.no-padding(style='background-size: cover;')
     .col-lg-3.col-md-6.col-sm-8(v-for = "user in users")
       div(data-aos='zoom-in-down' data-aos-anchor-placement='bottom-bottom')
         .profile_pic.text-center(style='background-size: cover;')
-          figure.picframe.sc-icon.mb20
-            .icons(style='background-size: cover;')
-              a(href='https://www.facebook.com/alextregam' target='_blank')
-                i.fa.fa-facebook.fa-lg
-              a(href='https://twitter.com/alextregam' target='_blank')
-                i.fa.fa-twitter.fa-lg
-              a(href='https://mx.linkedin.com/in/alejandro-trevi%C3%B1o-gamboa-467704ba' target='_blank')
-                i.fa.fa-linkedin.fa-lg
-              a(href='https://instagram.com/alextregam' target='_blank')
-                i.fa.fa-instagram.fa-lg
+          .icons(style='background-size: cover;')
+            .conta
+              .overlay(v-for = "red in user.redes")
+                .text
+                  a(v-if="red.Facebook" :href= "red.Facebook"  target='_blank') 
+                    i(class="icon-facebook-circled" style="font-size: 3rem; color: #ffffff")
+                  a(v-if="red.Instagram" :href='red.Instagram' target='_blank') 
+                    i(class="icon-instagram" style="font-size: 3rem; color: #ffffff")
+                  a(v-if="red.Twitter" :href='red.Twitter' target='_blank')
+                    i(class="icon-twitter-circled" style="font-size: 3rem; color: #ffffff")
+                  a(v-if="red.Linkedin" :href='red.Linkedin' target='_blank')
+                    i(class="icon-linkedin-circled" style="font-size: 3rem; color: #ffffff")
+                  a(v-if="red.Google" :href='red.Google') 
+                    i(class="icon-gplus-circled" style="font-size: 3rem; color: #ffffff")
             img.img-fluid(:src='user.Foto' alt='')
           h3 {{user.Nombre}}
           span.subtitle {{user.Posicion}}
@@ -49,6 +53,9 @@ export default{
       show:true,
       user: {},
       users: [],
+      red: {},
+      redes: [],
+      url: "",
     }
   },
   props: {
@@ -63,7 +70,7 @@ export default{
     headimageComponent
   },
   methods: {
-    getUsers(){
+    getRedes(){
       axios.get('/api/estructura').then(response => {
         this.users = response.data.data
         //this.meta = response.data.meta
@@ -73,7 +80,7 @@ export default{
     },
     },
     mounted(){
-      this.getUsers()
+      this.getRedes()
     }
 }
 </script>
@@ -114,78 +121,38 @@ export default{
   */
   opacity: 0.001;
 }
-.hover {
-  overflow: hidden;
-  position: relative;
-  padding-bottom: 60%;
-}
-
-.hover-overlay {
-  width: 500%;
-  height: 71%;
+.text {
+  color: white;
+  font-size: 20px;
   position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 90;
-  transition: all 0.4s;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
-
-.hover img {
+.imager {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+}
+.conta:hover .overlay {
+  opacity: 1;
+}
+
+
+.overlay {
   position: absolute;
   top: 0;
-  left: 0;
-  transition: all 0.3s;
-}
-
-.hover-content {
-  position: relative;
-  z-index: 99;
-}
-
-
-/* DEMO 1 ============================== */
-.hover-1 img {
-  width: 100%;
-  position: sticky;
-  top: 0;
-  transition: all 0.3s;
-}
-
-.hover-1-content {
-  position: absolute;
   bottom: 0;
   left: 0;
-  z-index: 99;
-  transition: all 0.4s;
-}
-
-.hover-1 .hover-overlay {
-  background: rgba(0, 0, 0, 0.5);
-}
-
-.hover-1-description {
-  transform: translateY(0.5rem);
-  transition: all 0.4s;
+  right: 0;
+  height: 100%;
+  width: 100%;
   opacity: 0;
-}
-
-.hover-1:hover .hover-1-content {
-  bottom: 2rem;
-}
-
-.hover-1:hover .hover-1-description {
-  opacity: 1;
-  transform: none;
-}
-
-.hover-1:hover img {
-  left: 0;
-}
-
-.hover-1:hover .hover-overlay {
-  opacity: 0;
+  transition: .5s ease;
+  background-color: #e61346;
 }
 
 

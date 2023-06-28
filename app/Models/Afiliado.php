@@ -10,7 +10,7 @@ class Afiliado extends Model
 {
     use HasFactory;
     protected $table = 'afiliado';
-    protected $fillable = ['Nombre', 'RFC', 'Dirección', 'Teléfono', 'Logo', 'Descripción'];
+    protected $fillable = ['Nombre', 'RFC', 'Logo', 'Descripción'];
     
     public function direcciones(){
         return $this->hasMany(Direcciones::class);

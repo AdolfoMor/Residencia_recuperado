@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AfiliadoController;
 use App\Http\Controllers\DireccionesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\RedesController;
 use App\Http\Controllers\EstructuraController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,5 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('/afiliado', AfiliadoController::class);
 Route::resource('/direcciones', DireccionesController::class);
 Route::resource('/users', UserController::class);
+Route::resource('/redes', RedesController::class);
+Route::post('/contact', ContactController::class)->name('contact');
 Route::resource('/estructura', EstructuraController::class);
 Route::get('/afiliado/show/{busqueda}', [AfiliadoController::class, 'show'])->name('afiliado.busqueda');

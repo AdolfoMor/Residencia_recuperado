@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AfiliadoRequest extends FormRequest
+class RedesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,12 @@ class AfiliadoRequest extends FormRequest
     public function rules()
     {
         return [
-            'Nombre' => 'required',
-            'RFC' => 'required',
-            'Logo',
-            'Descripción' => 'required',
+            'Facebook',
+            'Instagram',
+            'Linkedin',
+            'Twitter',
+            'Google',
+            'estructura_id' => 'required',
         ];
     }
 }

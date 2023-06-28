@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('estructura', function (Blueprint $table) {
+        Schema::create('redes', function (Blueprint $table) {
             $table->id();
-            $table->string("Nombre");
-            $table->string("Posicion");
-            $table->string("Foto");
+            $table->string("Facebook");
+            $table->string("Instagram");
+            $table->string("Linkedin");
+            $table->string("Twitter");
+            $table->string("Google");
+            $table->foreignId('estructura_id')->constrained('estructura');
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('estructura');
+        Schema::dropIfExists('redes');
     }
 };

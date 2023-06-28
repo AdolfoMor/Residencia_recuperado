@@ -85,7 +85,7 @@ class DireccionesController extends Controller
         $direcciones->Calle = $request->input('Calle');
         $direcciones->Numero = $request->input('Numero');
         $direcciones->Colonia = $request->input('Colonia');
-        $direcciones->Telefono = $request->input('Estado');
+        $direcciones->Telefono = $request->input('Telefono');
         $direcciones->afiliado_id = $request->input('afiliado_id');
         $direcciones->save();
 

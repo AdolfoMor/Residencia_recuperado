@@ -18,7 +18,7 @@ class EstructuraController extends Controller
      */
     public function index()
     {
-        $estructura = Estructura ::get(); 
+        $estructura = Estructura::with("Redes")->get(); 
         return EstructuraResource::collection($estructura);
     }
 

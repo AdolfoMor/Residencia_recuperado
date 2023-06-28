@@ -17,10 +17,12 @@ sakai
                                 td.p-6 
                                     image-component(:src='row.Foto' alt="Image" width="150" preview )
                                 td(align="center")
-                                    button-component.btn.btn-primary.mr-1(@click="edit(row)" v-tooltip="'Editar Afiliado'" title="Editar Afiliado")
+                                    button-component.btn.btn-primary.mr-1(@click="edit(row)" v-tooltip="'Editar Integrante'" title="Editar Integrante")
                                         i.pi.pi-pencil
-                                    button-component.btn.btn-danger(@click="remove(row)" v-tooltip="'Eliminar afiliado'" title="Eliminar afiliado")
+                                    button-component.btn.btn-danger(@click="remove(row)" v-tooltip="'Eliminar Integrante'" title="Eliminar Integrante")
                                         i.pi.pi-trash
+                                    a.btn.btn-secondary.mr-1(:href="'/Redes/'+ row.id" v-tooltip="'Gestionar direcciones'" title="Gestionar redes")
+                                        i.pi.pi-user-edit
 
         dialog-component.p-fluid(v-model:visible='afiliadoDialog', :style="{width: '750px'}", header='Usuario', :modal='true')
             form#createForm(@submit.prevent="store" ref="createForm")
@@ -67,7 +69,8 @@ export default {
         columns: [
         { label: 'Nombre', field: 'Nombre', sortable: true},
         { label: 'Posición', field: 'Posicion', sortable: true },
-        { label: 'Foto', field: 'Foto', sortable: true }
+        { label: 'Foto', field: 'Foto', sortable: true },
+        { label: 'Acciones', field: 'Acciones', sortable: true }
         ],
         user: {},
         users: [],

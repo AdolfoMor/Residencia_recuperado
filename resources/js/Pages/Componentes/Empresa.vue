@@ -10,19 +10,25 @@ div(data-aos='fade-up')
         .card.w-7.m-5(style='width: 25rem; background-color: rgba(0, 0, 0, 0.03);' v-for = "user in users" )
             .conta
                 img.card-img-top.mx-auto.d-block.m-3(:src='user.Logo' alt='Card image cap' style="width:250px; height:auto;") 
-                .overlay(v-for="direccion in user.direcciones")
-                    .text 
-                        h3 Sucursal
-                        p  {{direccion.Estado}}
-                        p Teléfono {{direccion.Telefono}}
             .card-body  
                 h5.card-title {{user.Nombre}}
                 p.card-text
                 | {{user.Descripción}}
-            ul.list-group.list-group-flush
-                li.list-group-item Teléfono: {{user.Teléfono}}
-                li.list-group-item Dirección: {{user.Dirección}}
-            ul.list-group.list-group-flush
+            #accordion
+              .card
+                #headingOne.card-header
+                  h5.mb-0
+                    button.btn.btn-link(data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne')
+                      | Mostrar Sucursales
+                #collapseOne.collapse(aria-labelledby='headingOne' data-parent='#accordion')
+                  .card-body(v-for="direccion in user.direcciones")
+                    h3 Sucursal 
+                      p(style="font-size:13px") {{direccion.Estado}}
+                    h4 Teléfono 
+                      p(style="font-size:13px") {{direccion.Telefono}}
+                    h4 Dirección 
+                      p(style="font-size:13px") {{direccion.Estado}} {{direccion.Ciudad}} {{direccion.Calle}} {{direccion.Numero}}
+
 
 </template>
 <script setup>
@@ -101,7 +107,7 @@ export default {
         }
     },
     mounted(){
-        this.getUsers()
+      this.getUsers()
     }
 }
 </script>
