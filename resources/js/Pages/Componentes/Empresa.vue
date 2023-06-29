@@ -15,19 +15,17 @@ div(data-aos='fade-up')
                 p.card-text
                 | {{user.Descripción}}
             #accordion
-              .card
+              .card(v-for="direccion in user.direcciones")
                 #headingOne.card-header
                   h5.mb-0
-                    button.btn.btn-link(data-toggle='collapse' data-target='#collapseOne' aria-expanded='true' aria-controls='collapseOne')
-                      | Mostrar Sucursales
-                #collapseOne.collapse(aria-labelledby='headingOne' data-parent='#accordion')
-                  .card-body(v-for="direccion in user.direcciones")
-                    h3 Sucursal 
-                      p(style="font-size:13px") {{direccion.Estado}}
-                    h4 Teléfono 
-                      p(style="font-size:13px") {{direccion.Telefono}}
-                    h4 Dirección 
-                      p(style="font-size:13px") {{direccion.Estado}} {{direccion.Ciudad}} {{direccion.Calle}} {{direccion.Numero}}
+                    buttoncomponent.btn.btn-link(data-toggle='collapse' :data-target="'#' + direccion.Telefono" aria-expanded='true' :aria-controls="'#' + direccion.Telefono")
+                      | Sucursal {{direccion.Estado}}
+                  .collapse(:id='direccion.Telefono' aria-labelledby='headingOne' data-parent='#accordion')
+                    .card-body
+                      h4 Teléfono 
+                        p(style="font-size:13px") {{direccion.Telefono}}
+                      h4 Dirección 
+                        p(style="font-size:13px") {{direccion.Estado}} {{direccion.Ciudad}} {{direccion.Calle}} {{direccion.Numero}}
 
 
 </template>
@@ -62,6 +60,7 @@ export default {
             busqueda:'',
             user: {},
             users: [],
+            collapse: '',
             direccion: {},
             direcciones: [],
             bodyStyle: {
@@ -98,6 +97,9 @@ export default {
         }).catch(errors => {
             this.manageErrors(errors)
         })
+        },
+        toggleButton() {
+          this.isActive = !this.isActive;
         },
         buscarAfiliado(){
             axios.get('/api/afiliado/show/' + this.busqueda).then(response => {
