@@ -14,23 +14,33 @@ div(data-aos='fade-up')
                 h5.card-title {{user.Nombre}}
                 p.card-text
                 | {{user.Descripción}}
-            #accordion
-              .card(v-for="direccion in user.direcciones")
+            #accordion1
+              .card
                 #headingOne.card-header
                   h5.mb-0
-                    buttoncomponent.btn.btn-link(data-toggle='collapse' :data-target="'#' + direccion.Telefono" aria-expanded='true' :aria-controls="'#' + direccion.Telefono")
-                      | Sucursal {{direccion.Estado}}
-                  .collapse(:id='direccion.Telefono' aria-labelledby='headingOne' data-parent='#accordion')
+                    buttoncomponent.btn.btn-link(data-toggle='collapse' :data-target="'#' + user.RFC" aria-expanded='true' :aria-controls="'#' + user.RFC")
+                      | Mostrar Sucursales 
+                  .collapse(:id='user.RFC' aria-labelledby='headingOne' data-parent='#accordion1')
                     .card-body
-                      h4 Teléfono 
-                        p(style="font-size:13px") {{direccion.Telefono}}
-                      h4 Dirección 
-                        p(style="font-size:13px") {{direccion.Estado}} {{direccion.Ciudad}} {{direccion.Calle}} {{direccion.Numero}}
+                      #accordion2
+                        .card(v-for="direccion in user.direcciones")
+                          #headingOne.card-header
+                            h5.mb-0
+                              buttoncomponent.btn.btn-link(data-toggle='collapse' :data-target="'#' + direccion.Calle" aria-expanded='true' :aria-controls="'#' + direccion.Calle")
+                                | Sucursal {{direccion.Estado}}
+                            .collapse(:id='direccion.Calle' aria-labelledby='headingOne' data-parent='#accordion2')
+                              .card-body
+                                h4 Teléfono 
+                                  p(style="font-size:13px") {{direccion.Telefono}}
+                                h4 Dirección 
+                                  p(style="font-size:13px") {{direccion.Estado}} {{direccion.Ciudad}} {{direccion.Calle}} {{direccion.Numero}}
+                          
 
 
 </template>
 <script setup>
 import { ref } from 'vue'
+import { NCollapse } from "naive-ui"
 
 const show = ref(true)
 </script>
@@ -51,7 +61,8 @@ export default {
         DialogComponent,
         AccordionTabComponent,
         NModal,
-        NButton
+        NButton,
+        NCollapse
         
         
     },
