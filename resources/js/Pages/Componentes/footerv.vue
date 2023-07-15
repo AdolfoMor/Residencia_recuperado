@@ -15,7 +15,7 @@
                             .column.three-fourth
                                 input#body(v-model="form.body" placeholder='Descripción' type='email' name='email_news' size='40' aria-required='true' aria-invalid='false')
                             .column.one-fourth
-                                input#submit(type='button' value='Afiliate')
+                            input#submit(type='button' value='Afiliate')
                         
             .column.one-second
                 .aside.widget_text.widget.widget_custom_html

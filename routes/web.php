@@ -8,6 +8,7 @@ use App\Http\Controllers\AfiliadoController;
 use App\Http\Controllers\EstructuraController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\EmailController;
 
 
 /*
@@ -46,13 +47,9 @@ Route::get('/home', function () {
 Route::get('/acerca', function () {
     return Inertia::render('acerca')->rootView("web");
 });
-Route::get('/projects', function () {
-    return View('projects');
-});
 
-Route::get('/test', function () {
-    return Inertia::render('test');
-});
+Route::get('/email', [App\Http\Controllers\EmailController::class, 'create']);
+Route::post('/email', [App\Http\Controllers\EmailController::class, 'sendEmail'])->name('send.email');
 
 Route::get('/Directorio', function () {
     return Inertia::render('Directorio')->rootView("web");
@@ -60,9 +57,7 @@ Route::get('/Directorio', function () {
 Route::get('/Usuario', function () {
     return Inertia::render('users')->rootView("layout");
 });
-Route::get('/Afiliados', function () {
-    return Inertia::render('demo')->rootView("layout");
-});
+
 Route::get('/Estructura', function () {
     return Inertia::render('estructuraO')->rootView("layout");
 });
@@ -80,6 +75,10 @@ Route::prefix('admin')->group(function(){
 Route::get('/dashboard', function () {
     return Inertia::render('Sakai/layout');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/Afiliados', function () {
+    return Inertia::render('demo')->rootView("layout");
+})->middleware(['auth', 'verified'])->name('afiliado');
 
 Route::resource('afiliado', AfiliadoController::class)
     ->middleware(['auth:sanctum', 'verified']);
