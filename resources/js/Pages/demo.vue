@@ -1,4 +1,4 @@
-<template lang="pug">
+ <template lang="pug">
 sakai
   template(v-slot:content)
     .col-12 

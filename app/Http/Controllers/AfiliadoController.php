@@ -59,7 +59,7 @@ class AfiliadoController extends Controller
      */
     public function show(Request $request, $term )
     { 
-        $variable = Afiliado::where('Nombre', 'like', '%'.$term.'%')->with("direcciones")->get();
+        $variable = Afiliado::where('Nombre', '=', '%'.$term.'%')->with("direcciones")->get();
         return AfiliadoResource::collection($variable);
     }
     /**

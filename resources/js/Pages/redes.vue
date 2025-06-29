@@ -24,7 +24,7 @@ sakai
                                     i.pi.pi-pencil
                                 button-component.btn.btn-danger(@click="remove(row)" v-tooltip="'Eliminar direccione'" title="Eliminar direccione")
                                     i.pi.pi-trash
-        dialog-component.p-fluid(v-model:visible='redDialog', :style="{width: '750px'}", header='Dirección', :modal='true')
+        dialog-component.p-fluid(v-model:visible='redDialog', :style="{width: '750px'}", header='Redes sociales', :modal='true')
             form#createForm(@submit.prevent="store" ref="createForm")
                 .row 
                     div.col-12

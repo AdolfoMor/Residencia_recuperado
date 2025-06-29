@@ -6,6 +6,8 @@ use App\Models\Redes;
 use Illuminate\Http\Request;
 use App\Http\Requests\RedesRequest;
 use App\Http\Resources\RedesResource;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Redirect;
 
 class RedesController extends Controller
 {
